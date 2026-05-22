@@ -429,6 +429,16 @@
       .desc-grid { grid-template-columns: 1fr; }
       nav { display: none; }
     }
+
+    /* ── LUCIDE ICONS ────────────────────────── */
+    .icon-search { width: 16px; height: 16px; color: #94a3b8; flex-shrink: 0; }
+    .icon-cart   { width: 18px; height: 18px; flex-shrink: 0; }
+    .icon-trust  { width: 26px; height: 26px; flex-shrink: 0; }
+    .icon-story  { width: 22px; height: 22px; flex-shrink: 0; }
+    .icon-cat    { width: 22px; height: 22px; flex-shrink: 0; }
+    .icon-arrow  { width: 18px; height: 18px; flex-shrink: 0; }
+    .icon-why    { width: 38px; height: 38px; flex-shrink: 0; }
+    .icon-story-sm { width: 26px; height: 26px; flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -452,11 +462,11 @@
     </nav>
     <div class="header-actions">
       <div class="search-box">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <i data-lucide="search" class="icon-search"></i>
         <input type="text" placeholder="Søk etter ATV...">
       </div>
       <a href="#" class="cart-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <i data-lucide="shopping-bag" class="icon-cart"></i>
         Handlekurv
         <span class="cart-count">0</span>
       </a>
@@ -561,7 +571,7 @@
         <button class="qty-btn" onclick="changeQty(1)">+</button>
       </div>
       <button class="btn-add-cart" onclick="this.textContent='✓ Lagt i handlekurv!'">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <i data-lucide="shopping-bag" style="width:20px;height:20px;flex-shrink:0;"></i>
         Legg i handlekurv
       </button>
     </div>
@@ -908,5 +918,7 @@
   }
 </script>
 
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>

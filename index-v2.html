@@ -584,6 +584,21 @@
       .footer-inner { grid-template-columns: 1fr 1fr; }
       nav { display: none; }
     }
+
+    /* ── LUCIDE ICONS ────────────────────────── */
+    .icon-search { width: 16px; height: 16px; color: #94a3b8; flex-shrink: 0; }
+    .icon-cart   { width: 18px; height: 18px; flex-shrink: 0; }
+    .icon-trust  { width: 26px; height: 26px; flex-shrink: 0; }
+    .icon-story  { width: 22px; height: 22px; flex-shrink: 0; }
+    .icon-cat    { width: 22px; height: 22px; flex-shrink: 0; }
+    .icon-arrow  { width: 18px; height: 18px; flex-shrink: 0; }
+    .icon-why    { width: 38px; height: 38px; flex-shrink: 0; }
+    .icon-story-sm { width: 26px; height: 26px; flex-shrink: 0; }
+    .story-point-icon.orange .icon-story { color: var(--orange); }
+    .story-point-icon.blue   .icon-story { color: var(--blue);   }
+    .story-point-icon.green  .icon-story { color: var(--green);  }
+    .story-point-icon.lime   .icon-story { color: var(--lime-dk, #65A30D); }
+    .trust-icon { display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
@@ -607,11 +622,11 @@
     </nav>
     <div class="header-actions">
       <div class="search-box">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <i data-lucide="search" class="icon-search"></i>
         <input type="text" placeholder="Søk etter ATV...">
       </div>
       <a href="#" class="cart-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <i data-lucide="shopping-bag" class="icon-cart"></i>
         Handlekurv
         <span class="cart-count">0</span>
       </a>
@@ -658,28 +673,28 @@
 <div class="trust-bar">
   <div class="trust-inner">
     <div class="trust-item">
-      <div class="trust-icon">🛡️</div>
+      <div class="trust-icon"><i data-lucide="shield-check" class="icon-trust"></i></div>
       <div>
         <div class="trust-title">CE-godkjent og trygg</div>
         <div class="trust-desc">Alle ATV-er oppfyller europeiske sikkerhetsstandarder</div>
       </div>
     </div>
     <div class="trust-item">
-      <div class="trust-icon">🚚</div>
+      <div class="trust-icon"><i data-lucide="truck" class="icon-trust"></i></div>
       <div>
         <div class="trust-title">Gratis levering</div>
         <div class="trust-desc">Fri frakt til hele landet på alle ordre</div>
       </div>
     </div>
     <div class="trust-item">
-      <div class="trust-icon">↩️</div>
+      <div class="trust-icon"><i data-lucide="rotate-ccw" class="icon-trust"></i></div>
       <div>
         <div class="trust-title">14 dagers retur</div>
         <div class="trust-desc">Ikke fornøyd? Send den tilbake, ingen spørsmål</div>
       </div>
     </div>
     <div class="trust-item">
-      <div class="trust-icon">📞</div>
+      <div class="trust-icon"><i data-lucide="phone" class="icon-trust"></i></div>
       <div>
         <div class="trust-title">Kundeservice</div>
         <div class="trust-desc">Ring oss på 123 45 678 — vi hjelper deg</div>
@@ -697,7 +712,7 @@
 
     <!-- GASOLINE -->
     <div class="cat-type-label">
-      <div class="cat-type-icon gas">⛽</div>
+      <div class="cat-type-icon gas"><i data-lucide="fuel" class="icon-cat"></i></div>
       <div>
         <div class="cat-type-title">Bensindrevet ATV</div>
         <div class="cat-type-sub">Klassisk kraft — perfekt for terreng og skog</div>
@@ -714,7 +729,7 @@
           <div class="cat-card-desc">Trygge og morsomme ATV-er for de minste eventyrerene</div>
         </div>
         <div class="cat-card-footer">
-          <div class="cat-arrow">&rarr;</div>
+          <div class="cat-arrow"><i data-lucide="arrow-right" class="icon-arrow"></i></div>
         </div>
       </a>
       <a href="#" class="cat-card">
@@ -727,7 +742,7 @@
           <div class="cat-card-desc">Mer kraft og rekkevidde — for de som er klare for neste steg</div>
         </div>
         <div class="cat-card-footer">
-          <div class="cat-arrow">&rarr;</div>
+          <div class="cat-arrow"><i data-lucide="arrow-right" class="icon-arrow"></i></div>
         </div>
       </a>
       <a href="#" class="cat-card">
@@ -740,14 +755,14 @@
           <div class="cat-card-desc">Stilige og kraftige ATV-er for ungdom og voksne</div>
         </div>
         <div class="cat-card-footer">
-          <div class="cat-arrow">&rarr;</div>
+          <div class="cat-arrow"><i data-lucide="arrow-right" class="icon-arrow"></i></div>
         </div>
       </a>
     </div>
 
     <!-- ELECTRIC -->
     <div class="cat-type-label" style="margin-top:48px;">
-      <div class="cat-type-icon elec">⚡</div>
+      <div class="cat-type-icon elec"><i data-lucide="zap" class="icon-cat"></i></div>
       <div>
         <div class="cat-type-title">Elektrisk ATV</div>
         <div class="cat-type-sub">Stillegående og miljøvennlig — perfekt for hage og park</div>
@@ -764,7 +779,7 @@
           <div class="cat-card-desc">Trygg og stillegående elektrisk ATV for de minste</div>
         </div>
         <div class="cat-card-footer">
-          <div class="cat-arrow">&rarr;</div>
+          <div class="cat-arrow"><i data-lucide="arrow-right" class="icon-arrow"></i></div>
         </div>
       </a>
       <a href="#" class="cat-card elec-card">
@@ -777,7 +792,7 @@
           <div class="cat-card-desc">Mer kraft og lengre rekkevidde for aktive barn</div>
         </div>
         <div class="cat-card-footer">
-          <div class="cat-arrow">&rarr;</div>
+          <div class="cat-arrow"><i data-lucide="arrow-right" class="icon-arrow"></i></div>
         </div>
       </a>
       <a href="#" class="cat-card elec-card">
@@ -790,7 +805,7 @@
           <div class="cat-card-desc">Kraftig elektrisk ATV for ungdom og voksne</div>
         </div>
         <div class="cat-card-footer">
-          <div class="cat-arrow">&rarr;</div>
+          <div class="cat-arrow"><i data-lucide="arrow-right" class="icon-arrow"></i></div>
         </div>
       </a>
     </div>
@@ -957,21 +972,21 @@
         <div class="section-sub">Vi tror på at de beste opplevelsene skjer utendørs. Enten du utforsker skogsstier med familien, kjører i fjellet med venner, eller trenger en pålitelig arbeidspartner på gården — vi har ATV-en for deg.</div>
         <div class="story-points">
           <div class="story-point">
-            <div class="story-point-icon orange">🛡️</div>
+            <div class="story-point-icon orange"><i data-lucide="shield-check" class="icon-story"></i></div>
             <div>
               <div class="story-point-title">Trygt &amp; Pålitelig</div>
               <div class="story-point-text">Alle våre ATV-er oppfyller europeiske sikkerhetsstandarder. Vi kompromisser aldri på sikkerhet for barna dine.</div>
             </div>
           </div>
           <div class="story-point">
-            <div class="story-point-icon lime">⚡</div>
+            <div class="story-point-icon lime"><i data-lucide="zap" class="icon-story"></i></div>
             <div>
               <div class="story-point-title">Elektrisk &amp; Bensindrevet</div>
               <div class="story-point-text">Bredt utvalg — fra stille elektriske modeller for hagen til kraftige bensinmotorer for tøft terreng.</div>
             </div>
           </div>
           <div class="story-point">
-            <div class="story-point-icon green">🌿</div>
+            <div class="story-point-icon green"><i data-lucide="leaf" class="icon-story"></i></div>
             <div>
               <div class="story-point-title">Norsk natur, norske priser</div>
               <div class="story-point-text">Laget for norsk terreng. Fri frakt til hele landet og 14 dagers returrett på alle modeller.</div>
@@ -1056,5 +1071,7 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
