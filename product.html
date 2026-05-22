@@ -156,7 +156,7 @@
     .product-info {}
 
     .product-category-tag {
-      display: inline-block;
+      display: inline-flex; align-items: center; gap: 6px;
       font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--orange); margin-bottom: 10px;
     }
@@ -259,7 +259,7 @@
       display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap;
     }
     .trust-pill {
-      display: flex; align-items: center; gap: 6px;
+      display: inline-flex; align-items: center; gap: 6px;
       font-size: 12px; font-weight: 700; color: var(--mid);
     }
 
@@ -278,6 +278,7 @@
       padding: 14px 24px; font-family: 'Nunito', sans-serif;
       font-size: 15px; font-weight: 800; color: var(--mid);
       cursor: pointer; margin-bottom: -2px;
+      display: inline-flex; align-items: center; gap: 7px;
       transition: color .15s, border-color .15s;
     }
     .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
@@ -311,7 +312,7 @@
       background: var(--bg); border-radius: var(--radius);
       border: 2px solid var(--border); padding: 24px;
     }
-    .desc-box-title { font-size: 16px; font-weight: 900; margin-bottom: 16px; color: var(--dark); }
+    .desc-box-title { font-size: 16px; font-weight: 900; margin-bottom: 16px; color: var(--dark); display: flex; align-items: center; gap: 7px; }
     .spec-mini { display: flex; flex-direction: column; gap: 10px; }
     .spec-mini-row {
       display: flex; justify-content: space-between; align-items: center;
@@ -344,6 +345,7 @@
       background: var(--dark); color: white;
       padding: 12px 20px; font-size: 13px; font-weight: 800;
       letter-spacing: 0.06em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px;
     }
     .spec-rows { padding: 0 20px; }
     .spec-row {
@@ -439,12 +441,20 @@
     .icon-arrow  { width: 18px; height: 18px; flex-shrink: 0; }
     .icon-why    { width: 38px; height: 38px; flex-shrink: 0; }
     .icon-story-sm { width: 26px; height: 26px; flex-shrink: 0; }
+    .icon-feat     { width: 18px; height: 18px; flex-shrink: 0; color: var(--orange); }
+    .icon-tab      { width: 16px; height: 16px; flex-shrink: 0; }
+    .icon-trust-sm { width: 14px; height: 14px; flex-shrink: 0; }
+    .icon-type     { width: 12px; height: 12px; flex-shrink: 0; }
+    .icon-spec     { width: 16px; height: 16px; flex-shrink: 0; color: #94a3b8; }
+    .icon-topbar   { width: 13px; height: 13px; flex-shrink: 0; vertical-align: middle; }
+    .icon-play     { width: 56px; height: 56px; flex-shrink: 0; color: var(--mid); }
+    .icon-key      { width: 15px; height: 15px; flex-shrink: 0; color: var(--orange); }
   </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
-<div class="topbar">🚚 <span>Gratis frakt</span> over kr 999 &nbsp;|&nbsp; 🔒 Trygg betaling med Vipps &nbsp;|&nbsp; ✅ 14 dagers returrett</div>
+<div class="topbar"><i data-lucide="truck" class="icon-topbar"></i> <span>Gratis frakt</span> over kr 999 &nbsp;|&nbsp; <i data-lucide="lock" class="icon-topbar"></i> Trygg betaling med Vipps &nbsp;|&nbsp; <i data-lucide="check-circle" class="icon-topbar"></i> 14 dagers returrett</div>
 
 <!-- HEADER -->
 <header>
@@ -519,7 +529,7 @@
 
   <!-- RIGHT: Info -->
   <div class="product-info">
-    <div class="product-category-tag">⛽ Bensindrevet · 110cc · Nyankomne</div>
+    <div class="product-category-tag"><i data-lucide="fuel" class="icon-cat"></i> Bensindrevet · 110cc · Nyankomne</div>
     <h1 class="product-title">Mancini Farmer 110CC revers speedometer</h1>
 
     <div class="price-block">
@@ -536,27 +546,27 @@
 
     <div class="key-features">
       <div class="key-feat">
-        <span class="key-feat-icon">⚡</span>
+        <i data-lucide="zap" class="icon-feat"></i>
         <span class="key-feat-text">Elektrisk start</span>
       </div>
       <div class="key-feat">
-        <span class="key-feat-icon">🔄</span>
+        <i data-lucide="rotate-ccw" class="icon-feat"></i>
         <span class="key-feat-text">Revers-gir</span>
       </div>
       <div class="key-feat">
-        <span class="key-feat-icon">🏎️</span>
+        <i data-lucide="gauge" class="icon-feat"></i>
         <span class="key-feat-text">Justerbar fart (6–50 km/h)</span>
       </div>
       <div class="key-feat">
-        <span class="key-feat-icon">🛡️</span>
+        <i data-lucide="shield-check" class="icon-feat"></i>
         <span class="key-feat-text">CE-godkjent og trygg</span>
       </div>
       <div class="key-feat">
-        <span class="key-feat-icon">📊</span>
+        <i data-lucide="activity" class="icon-feat"></i>
         <span class="key-feat-text">Speedometer display</span>
       </div>
       <div class="key-feat">
-        <span class="key-feat-icon">🔧</span>
+        <i data-lucide="settings" class="icon-feat"></i>
         <span class="key-feat-text">Automatisk girkasse</span>
       </div>
     </div>
@@ -577,7 +587,7 @@
     </div>
 
     <button class="btn-buy-now">
-      ⚡ Kjøp nå med Vipps
+      <i data-lucide="zap" class="icon-cart"></i> Kjøp nå med Vipps
     </button>
 
     <div class="vipps-note">
@@ -586,10 +596,10 @@
     </div>
 
     <div class="trust-row">
-      <div class="trust-pill">✅ På lager</div>
-      <div class="trust-pill">🚚 Fri frakt</div>
-      <div class="trust-pill">↩️ 14 dagers retur</div>
-      <div class="trust-pill">🛡️ CE-godkjent</div>
+      <div class="trust-pill"><i data-lucide="check-circle" class="icon-trust-sm"></i> På lager</div>
+      <div class="trust-pill"><i data-lucide="truck" class="icon-trust-sm"></i> Fri frakt</div>
+      <div class="trust-pill"><i data-lucide="rotate-ccw" class="icon-trust-sm"></i> 14 dagers retur</div>
+      <div class="trust-pill"><i data-lucide="shield-check" class="icon-trust-sm"></i> CE-godkjent</div>
     </div>
   </div>
 
@@ -598,9 +608,9 @@
 <!-- TABS SECTION -->
 <div class="tabs-section">
   <div class="tab-bar">
-    <button class="tab-btn active" onclick="showTab('beskrivelse', this)">📄 Beskrivelse</button>
-    <button class="tab-btn" onclick="showTab('video', this)">▶️ Video</button>
-    <button class="tab-btn" onclick="showTab('spesifikasjoner', this)">🔧 Tekniske data</button>
+    <button class="tab-btn active" onclick="showTab('beskrivelse', this)"><i data-lucide="file-text" class="icon-tab"></i> Beskrivelse</button>
+    <button class="tab-btn" onclick="showTab('video', this)"><i data-lucide="play-circle" class="icon-tab"></i> Video</button>
+    <button class="tab-btn" onclick="showTab('spesifikasjoner', this)"><i data-lucide="wrench" class="icon-tab"></i> Tekniske data</button>
   </div>
 
   <!-- TAB: Beskrivelse -->
@@ -626,7 +636,7 @@
       </div>
       <div>
         <div class="desc-box">
-          <div class="desc-box-title">🔑 Nøkkeldata</div>
+          <div class="desc-box-title"><i data-lucide="key" class="icon-key"></i> Nøkkeldata</div>
           <div class="spec-mini">
             <div class="spec-mini-row">
               <span class="spec-mini-label">Motor</span>
@@ -669,7 +679,7 @@
   <!-- TAB: Video -->
   <div id="tab-video" class="tab-content">
     <div class="video-placeholder">
-      <div class="video-play">▶️</div>
+      <i data-lucide="play-circle" class="icon-play"></i>
       <p>Video kommer snart</p>
       <small>Vi jobber med å lage en produktvideo for Mancini Farmer 110CC. Sjekk tilbake igjen!</small>
     </div>
@@ -680,7 +690,7 @@
     <div class="specs-grid">
 
       <div class="spec-card">
-        <div class="spec-card-header">⚙️ Motor & Ytelse</div>
+        <div class="spec-card-header"><i data-lucide="settings" class="icon-spec"></i> Motor & Ytelse</div>
         <div class="spec-rows">
           <div class="spec-row">
             <span class="spec-label">Modell</span>
@@ -714,7 +724,7 @@
       </div>
 
       <div class="spec-card">
-        <div class="spec-card-header">🔄 Drivverk & Bremser</div>
+        <div class="spec-card-header"><i data-lucide="git-merge" class="icon-spec"></i> Drivverk & Bremser</div>
         <div class="spec-rows">
           <div class="spec-row">
             <span class="spec-label">Girkasse</span>
@@ -744,7 +754,7 @@
       </div>
 
       <div class="spec-card">
-        <div class="spec-card-header">📐 Mål & Vekt</div>
+        <div class="spec-card-header"><i data-lucide="ruler" class="icon-spec"></i> Mål & Vekt</div>
         <div class="spec-rows">
           <div class="spec-row">
             <span class="spec-label">Mål (LxBxH)</span>
@@ -774,7 +784,7 @@
       </div>
 
       <div class="spec-card">
-        <div class="spec-card-header">🛞 Dekk & Utstyr</div>
+        <div class="spec-card-header"><i data-lucide="circle" class="icon-spec"></i> Dekk & Utstyr</div>
         <div class="spec-rows">
           <div class="spec-row">
             <span class="spec-label">Dekk foran</span>
@@ -823,7 +833,7 @@
         <div class="product-card-body">
           <span class="product-age-badge green">3–8 år</span>
           <div class="product-card-title">Mini ATV 50cc Pink Edition</div>
-          <div class="product-card-type">⛽ Bensindrevet · 50cc</div>
+          <div class="product-card-type"><i data-lucide="fuel" class="icon-type"></i> Bensindrevet · 50cc</div>
         </div>
         <div class="product-card-footer">
           <div class="product-price-old">kr 6 990,00</div>
@@ -839,7 +849,7 @@
         <div class="product-card-body">
           <span class="product-age-badge blue">6–10 år</span>
           <div class="product-card-title">Renegade el ATV kardang børsteløs 1200W</div>
-          <div class="product-card-type">⚡ Elektrisk · 1200W</div>
+          <div class="product-card-type"><i data-lucide="zap" class="icon-type"></i> Elektrisk · 1200W</div>
         </div>
         <div class="product-card-footer">
           <div class="product-price-old">kr 12 990,00</div>
@@ -855,7 +865,7 @@
         <div class="product-card-body">
           <span class="product-age-badge blue">6–10 år</span>
           <div class="product-card-title">Elektrisk mini ATV for barn 1000W Renegade</div>
-          <div class="product-card-type">⚡ Elektrisk · 1000W</div>
+          <div class="product-card-type"><i data-lucide="zap" class="icon-type"></i> Elektrisk · 1000W</div>
         </div>
         <div class="product-card-footer">
           <div class="product-price-old">kr 9 490,00</div>
@@ -871,7 +881,7 @@
         <div class="product-card-body">
           <span class="product-age-badge blue">7–12 år</span>
           <div class="product-card-title">Challenge ATV 110CC Black Edition</div>
-          <div class="product-card-type">⛽ Bensindrevet · 110cc</div>
+          <div class="product-card-type"><i data-lucide="fuel" class="icon-type"></i> Bensindrevet · 110cc</div>
         </div>
         <div class="product-card-footer">
           <div class="product-price-old">kr 12 990,00</div>
