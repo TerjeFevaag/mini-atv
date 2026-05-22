@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-ATV.no — Norges beste Mini-ATV for barn og ungdom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0F172A;
+      --sky:       #0EA5E9;
+      --sky-lt:    #F0F9FF;
+      --orange:    #FB923C;
+      --orange-dk: #EA580C;
+      --orange-lt: #FFF7ED;
+      --green:     #16A34A;
+      --green-lt:  #F0FDF4;
+      --red:       #EF4444;
+      --mid:       #64748B;
+      --border:    #E2E8F0;
+      --bg:        #FAFAF9;
+      --card-bg:   #F8FAFC;
+      --white:     #FFFFFF;
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 32px;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--navy);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ─────────────────────────────── */
+    .topbar {
+      background: var(--sky-lt);
+      color: var(--mid);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      padding: 8px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar strong { color: var(--sky); }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 80px;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 80px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo img { height: 50px; display: block; }
+
+    nav {
+      display: flex; gap: 4px;
+      justify-content: center;
+    }
+    nav a {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--mid);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: color .15s, background .15s;
+    }
+    nav a:hover { color: var(--navy); background: var(--card-bg); }
+
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 16px;
+      gap: 8px;
+      width: 200px;
+    }
+    .search-box input {
+      border: none; background: none; outline: none;
+      font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 600; width: 100%;
+      color: var(--navy);
+    }
+
+    .cart-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--navy); color: white;
+      border: none; border-radius: 999px;
+      padding: 10px 20px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      cursor: pointer; text-decoration: none;
+      transition: background .15s;
+    }
+    .cart-btn:hover { background: #1e293b; }
+    .cart-count {
+      background: var(--orange); color: white;
+      border-radius: 999px; width: 20px; height: 20px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 900;
+    }
+
+    /* ── HERO (V3 — split layout) ────────────── */
+    .hero {
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      align-items: stretch;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: #EFF6FF;
+      display: flex;
+      align-items: center;
+      padding: 80px 60px 80px 40px;
+    }
+
+    .hero-left-inner { max-width: 480px; }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--sky-lt);
+      color: var(--sky);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      border: 1.5px solid #BAE6FD;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 4.5vw, 62px);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.08;
+      margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--sky); font-style: normal; }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--mid);
+      font-weight: 600;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-btns { display: flex; flex-direction: column; gap: 12px; max-width: 280px; }
+
+    .btn-primary {
+      background: var(--navy); color: white;
+      border: none; border-radius: var(--radius-sm);
+      padding: 15px 28px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 15px;
+      cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .15s;
+    }
+    .btn-primary:hover { background: #1e293b; }
+
+    .btn-outline {
+      background: transparent; color: var(--navy);
+      border: 2px solid var(--border); border-radius: var(--radius-sm);
+      padding: 15px 28px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: border-color .15s, background .15s;
+    }
+    .btn-outline:hover { border-color: var(--navy); background: var(--card-bg); }
+
+    .hero-stats {
+      display: flex; gap: 24px; margin-top: 40px; flex-wrap: wrap;
+    }
+    .hero-stat .num { font-size: 28px; font-weight: 900; line-height: 1; color: var(--sky); }
+    .hero-stat .lbl { font-size: 12px; font-weight: 600; color: var(--mid); margin-top: 2px; }
+
+    .hero-right {
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 40px 40px 0;
+    }
+
+    .hero-img-wrap {
+      width: 100%;
+      max-width: 560px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .hero-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    /* ── AGE FILTER ──────────────────────────── */
+    .age-filter {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+    }
+    .age-filter-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .age-filter-label { color: var(--mid); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+    .age-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      border-radius: 999px; padding: 6px 16px;
+      font-weight: 700; font-size: 13px; cursor: pointer;
+      text-decoration: none; transition: all .15s;
+      border: 1.5px solid var(--border);
+      background: var(--white); color: var(--mid);
+    }
+    .age-chip:hover, .age-chip.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+    /* ── TRUST BAR ───────────────────────────── */
+    .trust-bar {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+    }
+    .trust-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .trust-item { display: flex; align-items: center; gap: 14px; }
+    .trust-icon { font-size: 24px; }
+    .trust-title { font-size: 13px; font-weight: 800; color: var(--navy); }
+    .trust-desc  { font-size: 12px; color: var(--mid); font-weight: 600; }
+
+    /* ── SECTION ──────────────────────────────── */
+    .section { padding: 72px 24px; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--sky); margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3.2vw, 40px);
+      font-weight: 900; color: var(--navy); line-height: 1.15; margin-bottom: 8px;
+    }
+    .section-sub { font-size: 16px; color: var(--mid); font-weight: 600; margin-bottom: 40px; }
+
+    /* ── CATEGORY CARDS (V3) ─────────────────── */
+    .cat-section { background: var(--white); }
+
+    .cat-type-label {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px; margin-top: 48px;
+    }
+    .cat-type-label:first-of-type { margin-top: 0; }
+    .cat-type-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .cat-type-icon.gas   { background: var(--orange-lt); }
+    .cat-type-icon.elec  { background: var(--sky-lt);    }
+    .cat-type-title { font-size: 20px; font-weight: 900; color: var(--navy); }
+    .cat-type-sub   { font-size: 13px; color: var(--mid); font-weight: 600; margin-top: 2px; }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .cat-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .cat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .cat-card-img-wrap { position: relative; overflow: hidden; }
+    .cat-card-img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s;
+    }
+    .cat-card:hover .cat-card-img { transform: scale(1.04); }
+
+    .cat-age-float {
+      position: absolute; bottom: 12px; right: 12px;
+      font-size: 11px; font-weight: 800; padding: 4px 12px;
+      border-radius: 999px; display: inline-block;
+      backdrop-filter: blur(8px);
+    }
+    .cat-age-float.green  { background: rgba(22,163,74,0.9);   color: white; }
+    .cat-age-float.blue   { background: rgba(14,165,233,0.9);  color: white; }
+    .cat-age-float.orange { background: rgba(251,146,60,0.9);  color: white; }
+
+    .cat-card-body { padding: 20px; flex: 1; }
+    .cat-engine    { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sky); margin-bottom: 6px; }
+    .cat-engine.orange { color: var(--orange); }
+    .cat-card-title { font-size: 18px; font-weight: 900; color: var(--navy); margin-bottom: 5px; }
+    .cat-card-desc  { font-size: 14px; color: var(--mid); font-weight: 600; }
+
+    /* ── PRODUCTS GRID (V3) ──────────────────── */
+    .products-section { background: var(--bg); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: var(--radius);
+      border: none;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+    }
+
+    .product-card-img-wrap {
+      position: relative; overflow: hidden; background: var(--card-bg);
+    }
+    .product-card-img-wrap img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+      transition: transform .4s;
+    }
+    .product-card:hover .product-card-img-wrap img { transform: scale(1.04); }
+
+    .sale-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--red); color: white;
+      font-size: 10px; font-weight: 900; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 999px;
+    }
+    .new-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--sky); color: white;
+      font-size: 10px; font-weight: 900; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 999px;
+    }
+
+    .sale-price-pill {
+      position: absolute; bottom: 10px; right: 10px;
+      background: var(--red); color: white;
+      font-size: 13px; font-weight: 900;
+      padding: 5px 12px; border-radius: 999px;
+    }
+
+    .product-card-body { padding: 14px 16px 8px; flex: 1; }
+    .product-age-badge {
+      display: inline-block; font-size: 11px; font-weight: 800;
+      padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+    }
+    .product-age-badge.green  { background: var(--green-lt);  color: var(--green);  }
+    .product-age-badge.blue   { background: var(--sky-lt);    color: #0284c7;       }
+    .product-age-badge.orange { background: var(--orange-lt); color: var(--orange-dk); }
+
+    .product-card-title { font-size: 14px; font-weight: 800; color: var(--navy); line-height: 1.3; margin-bottom: 4px; }
+    .product-card-type  { font-size: 12px; color: var(--mid); font-weight: 600; }
+
+    .product-card-footer { padding: 10px 16px 14px; }
+    .product-price-old { font-size: 12px; color: var(--mid); text-decoration: line-through; font-weight: 600; margin-bottom: 2px; }
+    .product-price { font-size: 20px; font-weight: 900; color: var(--navy); }
+
+    .add-to-cart-btn {
+      width: 100%; margin-top: 10px;
+      background: var(--navy); color: white;
+      border: none; border-radius: var(--radius-sm);
+      padding: 10px; font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 14px; cursor: pointer;
+      transition: background .15s;
+    }
+    .add-to-cart-btn:hover { background: #1e293b; }
+
+    /* ── BRAND STORY (V3 — full-width image with quote) ── */
+    .brand-story {
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-story-img {
+      width: 100%; height: 500px;
+      object-fit: cover; display: block;
+      filter: brightness(0.5);
+    }
+    .brand-story-overlay {
+      position: absolute; inset: 0;
+      background: rgba(15,23,42,0.5);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand-story-content {
+      text-align: center; max-width: 720px; padding: 40px 24px;
+    }
+    .brand-story-tag {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); margin-bottom: 20px; display: block;
+    }
+    .brand-story-quote {
+      font-size: clamp(24px, 3.5vw, 40px);
+      font-weight: 900;
+      color: white;
+      line-height: 1.25;
+      margin-bottom: 32px;
+    }
+    .brand-story-points {
+      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+    }
+    .brand-story-point { color: white; text-align: center; }
+    .brand-story-point .icon { font-size: 28px; margin-bottom: 8px; }
+    .brand-story-point .title { font-size: 14px; font-weight: 800; color: white; }
+    .brand-story-point .text { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
+
+    /* ── CTA SECTION (V3 — navy bg, centered) ──── */
+    .cta-banner {
+      background: var(--navy);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-inner {
+      max-width: 600px; margin: 0 auto;
+    }
+    .cta-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; display: block; }
+    .cta-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; color: white; line-height: 1.1; margin-bottom: 14px; }
+    .cta-sub { font-size: 16px; color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 36px; }
+
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: white; color: var(--navy);
+      border: none; border-radius: var(--radius-sm);
+      padding: 18px 40px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 16px;
+      cursor: pointer; text-decoration: none;
+      transition: background .15s, color .15s, transform .12s;
+    }
+    .btn-cta:hover { background: var(--orange); color: white; transform: translateY(-2px); }
+
+    .cta-secondary { display: block; margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .cta-secondary:hover { color: white; }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 56px 24px 0;
+      color: var(--mid);
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 3fr; gap: 60px;
+    }
+    .footer-brand-col { }
+    .footer-brand img { height: 44px; margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; font-weight: 600; line-height: 1.7; max-width: 260px; color: var(--mid); }
+
+    .footer-links-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .footer-col-title { font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); margin-bottom: 16px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: var(--mid); text-decoration: none; font-size: 14px; font-weight: 600; transition: color .15s; }
+    .footer-links a:hover { color: var(--navy); }
+
+    .footer-bottom {
+      max-width: 1280px; margin: 40px auto 0;
+      border-top: 1px solid var(--border);
+      padding: 20px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 13px; font-weight: 600; color: var(--mid); }
+    .payment-icons { display: flex; gap: 10px; align-items: center; }
+    .pay-badge {
+      background: var(--card-bg); color: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.05em;
+    }
+    .pay-badge.vipps { background: #FF5B24; color: white; border-color: #FF5B24; }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { display: none; }
+      .hero-left { padding: 60px 24px; }
+      .hero-btns { flex-direction: row; max-width: none; }
+    }
+    @media (max-width: 768px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .trust-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-links-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { display: none; }
+      .header-inner { grid-template-columns: 1fr auto; }
+      .header-inner nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar"><strong>Gratis frakt</strong> over kr 999 &nbsp;·&nbsp; Trygg betaling med Vipps &nbsp;·&nbsp; 14 dagers returrett</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="Engros%20Service_files/Engros-Service-Mini-ATV-01-1.png" alt="Engros Service Mini-ATV">
+    </a>
+    <nav>
+      <a href="#">Hjem</a>
+      <a href="#">Butikk</a>
+      <a href="#">Bensindrevet</a>
+      <a href="#">Elektrisk</a>
+      <a href="#">Om oss</a>
+      <a href="#">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <div class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Søk etter ATV...">
+      </div>
+      <a href="#" class="cart-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Handlekurv
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO (split layout) -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-left-inner">
+      <div class="hero-tag">🏁 Norges største utvalg av Mini-ATV</div>
+      <h1>Ditt neste<br><em>eventyr</em><br>starter her</h1>
+      <p class="hero-sub">Opplev friheten med våre Mini-ATV-er. Trygge, morsomme og perfekt for norske stier — for barn fra 3 til 12 år.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Se alle modeller &rarr;</a>
+        <a href="#" class="btn-outline">Vår historie</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">200+</div>
+          <div class="lbl">Fornøyde kunder</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">13</div>
+          <div class="lbl">Modeller på lager</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">3–12</div>
+          <div class="lbl">Aldersgruppe (år)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <img src="Engros%20Service_files/hero-atv-jrfmPW6S.jpg" alt="Mini-ATV">
+    </div>
+  </div>
+</section>
+
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div>
+        <div class="trust-title">CE-godkjent og trygg</div>
+        <div class="trust-desc">Alle ATV-er oppfyller europeiske sikkerhetsstandarder</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🚚</div>
+      <div>
+        <div class="trust-title">Gratis levering</div>
+        <div class="trust-desc">Fri frakt til hele landet på alle ordre</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">↩️</div>
+      <div>
+        <div class="trust-title">14 dagers retur</div>
+        <div class="trust-desc">Ikke fornøyd? Send den tilbake, ingen spørsmål</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📞</div>
+      <div>
+        <div class="trust-title">Kundeservice</div>
+        <div class="trust-desc">Ring oss på 123 45 678 — vi hjelper deg</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section cat-section">
+  <div class="section-inner">
+    <div class="section-tag">UTFORSK ETTER TYPE</div>
+    <div class="section-title">Kategorier</div>
+    <div class="section-sub">Velg riktig ATV basert på alder og preferanse</div>
+
+    <!-- GASOLINE -->
+    <div class="cat-type-label">
+      <div class="cat-type-icon gas">⛽</div>
+      <div>
+        <div class="cat-type-title">Bensindrevet ATV</div>
+        <div class="cat-type-sub">Klassisk kraft — perfekt for terreng og skog</div>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <a href="#" class="cat-card">
+        <div class="cat-card-img-wrap">
+          <img class="cat-card-img" src="Engros%20Service_files/product-atv-1-CA-fuCX8.jpg" alt="Mini ATV 50cc">
+
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-engine orange">Opp til 50cc</div>
+          <div class="cat-card-title">Barn &amp; Ungdom</div>
+          <div class="cat-card-desc">Trygge og morsomme ATV-er for de minste eventyrerene</div>
+        </div>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-card-img-wrap">
+          <img class="cat-card-img" src="Engros%20Service_files/atv125cc6-600x450.jpg" alt="ATV 110-125cc">
+
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-engine orange">110cc – 125cc</div>
+          <div class="cat-card-title">Barn &amp; Ungdom</div>
+          <div class="cat-card-desc">Mer kraft og rekkevidde — for de som er klare for neste steg</div>
+        </div>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-card-img-wrap">
+          <img class="cat-card-img" src="Engros%20Service_files/product-atv-3-UW4IHtNj.jpg" alt="ATV 250cc">
+
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-engine orange">250cc</div>
+          <div class="cat-card-title">Ungdom &amp; Voksen</div>
+          <div class="cat-card-desc">Stilige og kraftige ATV-er for ungdom og voksne</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- ELECTRIC -->
+    <div class="cat-type-label" style="margin-top:48px;">
+      <div class="cat-type-icon elec">⚡</div>
+      <div>
+        <div class="cat-type-title">Elektrisk ATV</div>
+        <div class="cat-type-sub">Stillegående og miljøvennlig — perfekt for hage og park</div>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <a href="#" class="cat-card">
+        <div class="cat-card-img-wrap">
+          <img class="cat-card-img" src="Engros%20Service_files/product-atv-4-tDPe2Xpr.jpg" alt="Elektrisk ATV 500W">
+
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-engine">Opp til 500 Watt</div>
+          <div class="cat-card-title">Barn &amp; Ungdom</div>
+          <div class="cat-card-desc">Trygg og stillegående elektrisk ATV for de minste</div>
+        </div>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-card-img-wrap">
+          <img class="cat-card-img" src="Engros%20Service_files/farmer_el_atv_1200w1-1-600x450.jpg" alt="Elektrisk ATV 1200W">
+
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-engine">Opp til 1200 Watt</div>
+          <div class="cat-card-title">Barn &amp; Ungdom</div>
+          <div class="cat-card-desc">Mer kraft og lengre rekkevidde for aktive barn</div>
+        </div>
+      </a>
+      <a href="#" class="cat-card">
+        <div class="cat-card-img-wrap">
+          <img class="cat-card-img" src="Engros%20Service_files/farmer_el_atv_1200w5-600x450.jpg" alt="Elektrisk ATV 1500W">
+
+        </div>
+        <div class="cat-card-body">
+          <div class="cat-engine">Opp til 1500 Watt</div>
+          <div class="cat-card-title">Ungdom &amp; Voksen</div>
+          <div class="cat-card-desc">Kraftig elektrisk ATV for ungdom og voksne</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR PRODUCTS -->
+<section class="section products-section">
+  <div class="section-inner">
+    <div class="section-tag">UTVALGTE MODELLER</div>
+    <div class="section-title">Populære ATV-er</div>
+    <div class="section-sub">Bestselgerne våre — elsket av barn og foreldre over hele landet</div>
+
+    <div class="products-grid">
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="Engros%20Service_files/oransje_atv_1-600x450.jpg" alt="MANCINI ATV 250 CC MOD R">
+          <span class="sale-badge">SALG</span>
+          <span class="sale-price-pill">kr 27 990</span>
+        </div>
+        <div class="product-card-body">
+
+          <div class="product-card-title">MANCINI ATV 250 CC MOD R</div>
+          <div class="product-card-type">⛽ Bensindrevet · 250cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 34 990,00</div>
+          <div class="product-price">kr 27 990,00</div>
+        </div>
+        <div style="padding: 0 16px 16px;"><button class="add-to-cart-btn">Legg i handlekurv</button></div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="Engros%20Service_files/atv_125_4-1-600x450.jpg" alt="ATV Predator">
+          <span class="sale-badge">SALG</span>
+          <span class="sale-price-pill">kr 15 990</span>
+        </div>
+        <div class="product-card-body">
+
+          <div class="product-card-title">ATV Predator sort speedometer hengerfeste</div>
+          <div class="product-card-type">⛽ Bensindrevet · 125cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 16 990,00</div>
+          <div class="product-price">kr 15 990,00</div>
+        </div>
+        <div style="padding: 0 16px 16px;"><button class="add-to-cart-btn">Legg i handlekurv</button></div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="Engros%20Service_files/atv_125_2-600x450.jpg" alt="ATV Farmer 125cc sort">
+          <span class="sale-badge">SALG</span>
+          <span class="sale-price-pill">kr 14 990</span>
+        </div>
+        <div class="product-card-body">
+
+          <div class="product-card-title">ATV Farmer 125cc sort speedometer</div>
+          <div class="product-card-type">⛽ Bensindrevet · 125cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 15 990,00</div>
+          <div class="product-price">kr 14 990,00</div>
+        </div>
+        <div style="padding: 0 16px 16px;"><button class="add-to-cart-btn">Legg i handlekurv</button></div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="Engros%20Service_files/oransje_atv3-600x450.jpg" alt="ATV Farmer 125cc rød">
+          <span class="sale-badge">SALG</span>
+          <span class="sale-price-pill">kr 14 990</span>
+        </div>
+        <div class="product-card-body">
+
+          <div class="product-card-title">ATV Farmer 125cc rød speedometer hengerfeste</div>
+          <div class="product-card-type">⛽ Bensindrevet · 125cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 15 990,00</div>
+          <div class="product-price">kr 14 990,00</div>
+        </div>
+        <div style="padding: 0 16px 16px;"><button class="add-to-cart-btn">Legg i handlekurv</button></div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="Engros%20Service_files/atv_125_5-1-1-600x450.jpg" alt="Outback 110cc">
+          <span class="sale-badge">SALG</span>
+          <span class="sale-price-pill">kr 12 990</span>
+        </div>
+        <div class="product-card-body">
+
+          <div class="product-card-title">Outback 110cc ATV med revers</div>
+          <div class="product-card-type">⛽ Bensindrevet · 110cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 14 990,00</div>
+          <div class="product-price">kr 12 990,00</div>
+        </div>
+        <div style="padding: 0 16px 16px;"><button class="add-to-cart-btn">Legg i handlekurv</button></div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="Engros%20Service_files/atv_125_5_2-600x450.jpg" alt="Mancini Farmer 110CC">
+          <span class="new-badge">NYHET</span>
+        </div>
+        <div class="product-card-body">
+
+          <div class="product-card-title">Mancini Farmer 110CC revers speedometer</div>
+          <div class="product-card-type">⛽ Bensindrevet · 110cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price">kr 12 990,00</div>
+        </div>
+        <div style="padding: 0 16px 16px;"><button class="add-to-cart-btn">Legg i handlekurv</button></div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="Engros%20Service_files/farmer_el_atv_1200w1-1-600x450.jpg" alt="Farmer el ATV 1500W">
+          <span class="sale-badge">SALG</span>
+          <span class="sale-price-pill">kr 12 990</span>
+        </div>
+        <div class="product-card-body">
+
+          <div class="product-card-title">Farmer el ATV kardang børsteløs 1500W</div>
+          <div class="product-card-type">⚡ Elektrisk · 1500W</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 14 990,00</div>
+          <div class="product-price">kr 12 990,00</div>
+        </div>
+        <div style="padding: 0 16px 16px;"><button class="add-to-cart-btn">Legg i handlekurv</button></div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="Engros%20Service_files/farmer_el_atv_1200w5-600x450.jpg" alt="Outback 110cc Orange">
+          <span class="sale-badge">SALG</span>
+          <span class="sale-price-pill">kr 12 990</span>
+        </div>
+        <div class="product-card-body">
+
+          <div class="product-card-title">Outback 110cc ATV med revers Orange</div>
+          <div class="product-card-type">⛽ Bensindrevet · 110cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 14 990,00</div>
+          <div class="product-price">kr 12 990,00</div>
+        </div>
+        <div style="padding: 0 16px 16px;"><button class="add-to-cart-btn">Legg i handlekurv</button></div>
+      </a>
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#" class="btn-primary" style="display:inline-flex; padding: 14px 36px;">Se alle produkter &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND STORY (full-width image + quote) -->
+<section class="brand-story">
+  <img class="brand-story-img" src="Engros%20Service_files/adventure-lifestyle-CJgNoD9h.jpg" alt="Familie på ATV-tur">
+  <div class="brand-story-overlay">
+    <div class="brand-story-content">
+      <span class="brand-story-tag">VÅR FILOSOFI</span>
+      <div class="brand-story-quote">"Vi tror på at de beste opplevelsene skjer utendørs"</div>
+      <div class="brand-story-points">
+        <div class="brand-story-point">
+          <div class="icon">🛡️</div>
+          <div class="title">Trygt &amp; Pålitelig</div>
+          <div class="text">CE-godkjente modeller</div>
+        </div>
+        <div class="brand-story-point">
+          <div class="icon">⚡</div>
+          <div class="title">Elektrisk &amp; Bensin</div>
+          <div class="text">Bredt utvalg for alle</div>
+        </div>
+        <div class="brand-story-point">
+          <div class="icon">🌿</div>
+          <div class="title">Norsk natur</div>
+          <div class="text">Laget for norsk terreng</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <span class="cta-tag">UTVALGTE MODELLER</span>
+    <div class="cta-title">Klar for å erobre terrenget?</div>
+    <div class="cta-sub">Fra fjord til fjell — våre ATV-er er bygget for å takle norsk natur. Bestill i dag og få den levert rett hjem.</div>
+    <a href="#" class="btn-cta">Handle nå &rarr;</a>
+    <a href="#" class="cta-secondary">📞 Ring oss: 123 45 678</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand-col">
+      <img src="Engros%20Service_files/Engros-Service-Mini-ATV-01-1.png" alt="Engros Service">
+      <p>Norges ledende nettbutikk for Mini-ATV og firehjulinger. Vi tilbyr kvalitetsprodukter med fri frakt til hele landet.</p>
+    </div>
+    <div class="footer-links-grid">
+      <div>
+        <div class="footer-col-title">Handleguide</div>
+        <ul class="footer-links">
+          <li><a href="#">Alle produkter</a></li>
+          <li><a href="#">Barn &amp; Ungdom</a></li>
+          <li><a href="#">Sport &amp; Racing</a></li>
+          <li><a href="#">Reservedeler</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Kundeservice</div>
+        <ul class="footer-links">
+          <li><a href="#">Kontakt oss</a></li>
+          <li><a href="#">Frakt &amp; Levering</a></li>
+          <li><a href="#">Garanti</a></li>
+          <li><a href="#">Om oss</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Kategorier</div>
+        <ul class="footer-links">
+          <li><a href="#">Opp til 50cc</a></li>
+          <li><a href="#">110cc – 125cc</a></li>
+          <li><a href="#">250cc</a></li>
+          <li><a href="#">Elektrisk ATV</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">Copyright 2026 © Engros Service</div>
+    <div class="payment-icons">
+      <span class="pay-badge vipps">VIPPS</span>
+      <span class="pay-badge">VISA</span>
+      <span class="pay-badge">MASTERCARD</span>
+      <span class="pay-badge">STRIPE</span>
+      <span class="pay-badge">PAYPAL</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

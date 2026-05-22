@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mancini Farmer 110CC revers speedometer — Mini-ATV.no</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:    #FF6B00;
+      --orange-lt: #FFF3E8;
+      --blue:      #0EA5E9;
+      --blue-lt:   #F0F9FF;
+      --green:     #16A34A;
+      --green-lt:  #F0FDF4;
+      --red:       #EF4444;
+      --dark:      #0F172A;
+      --mid:       #475569;
+      --border:    #E2E8F0;
+      --bg:        #F8FAFC;
+      --white:     #FFFFFF;
+      --radius-sm: 10px;
+      --radius:    16px;
+      --radius-lg: 24px;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── TOPBAR + HEADER (same as homepage) ─── */
+    .topbar {
+      background: var(--dark);
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      padding: 8px 20px;
+    }
+    .topbar span { color: var(--orange); }
+
+    header {
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; gap: 32px;
+    }
+    .logo img { height: 52px; display: block; }
+    nav { flex: 1; display: flex; gap: 4px; }
+    nav a {
+      font-weight: 700; font-size: 15px; color: var(--dark);
+      text-decoration: none; padding: 8px 14px;
+      border-radius: var(--radius-sm); transition: background .15s, color .15s;
+    }
+    nav a:hover { background: var(--orange-lt); color: var(--orange); }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .search-box {
+      display: flex; align-items: center;
+      background: var(--bg); border: 2px solid var(--border);
+      border-radius: 999px; padding: 8px 16px; gap: 8px;
+      font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 600; width: 220px;
+    }
+    .search-box input { border: none; background: none; outline: none; font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 600; width: 100%; }
+    .cart-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--orange); color: white; border: none; border-radius: 999px;
+      padding: 10px 20px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 14px;
+      cursor: pointer; text-decoration: none; transition: background .15s;
+    }
+    .cart-btn:hover { background: #e05e00; }
+    .cart-count {
+      background: white; color: var(--orange); border-radius: 999px;
+      width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 900;
+    }
+
+    /* ── BREADCRUMB ──────────────────────────── */
+    .breadcrumb-bar {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+    }
+    .breadcrumb {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: var(--mid);
+    }
+    .breadcrumb a { color: var(--mid); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--orange); }
+    .breadcrumb .sep { color: var(--border); }
+    .breadcrumb .current { color: var(--dark); font-weight: 700; }
+
+    /* ── PRODUCT LAYOUT ──────────────────────── */
+    .product-section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 40px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* LEFT: Gallery */
+    .product-gallery {}
+
+    .main-image-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 2px solid var(--border);
+      background: #f8fafc;
+      aspect-ratio: 4/3;
+    }
+    .main-image-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: opacity .2s;
+    }
+
+    .sale-tag {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--red); color: white;
+      font-size: 13px; font-weight: 900; letter-spacing: 0.05em;
+      padding: 6px 14px; border-radius: 999px; text-transform: uppercase;
+    }
+
+    .thumbnail-row {
+      display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;
+    }
+    .thumb {
+      width: calc((100% - 50px) / 6);
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 2.5px solid var(--border);
+      cursor: pointer;
+      transition: border-color .15s, transform .12s;
+      background: #f8fafc;
+    }
+    .thumb.active { border-color: var(--orange); }
+    .thumb:hover  { border-color: var(--blue); transform: scale(1.05); }
+    .thumb img    { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* RIGHT: Product Info */
+    .product-info {}
+
+    .product-category-tag {
+      display: inline-block;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 900; color: var(--dark);
+      line-height: 1.15; margin-bottom: 16px;
+    }
+
+    .price-block { margin-bottom: 24px; }
+    .price-original { font-size: 15px; color: var(--mid); text-decoration: line-through; font-weight: 600; }
+    .price-current { font-size: 36px; font-weight: 900; color: var(--dark); line-height: 1; margin-top: 2px; }
+    .price-save {
+      display: inline-block; margin-top: 6px;
+      background: #FEF2F2; color: var(--red);
+      font-size: 13px; font-weight: 800; padding: 3px 10px; border-radius: 999px;
+    }
+
+    .age-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-lt); color: #0284c7;
+      border-radius: 999px; padding: 7px 16px;
+      font-size: 14px; font-weight: 800; margin-bottom: 20px;
+    }
+
+    .short-desc {
+      font-size: 16px; color: var(--mid); font-weight: 600;
+      line-height: 1.7; margin-bottom: 28px;
+      border-left: 4px solid var(--orange); padding-left: 16px;
+    }
+
+    .key-features {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-bottom: 28px;
+    }
+    .key-feat {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg); border-radius: var(--radius-sm);
+      padding: 10px 14px;
+    }
+    .key-feat-icon { font-size: 18px; }
+    .key-feat-text { font-size: 13px; font-weight: 700; color: var(--dark); }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+    /* Quantity + Add to cart */
+    .add-row {
+      display: flex; gap: 12px; align-items: center; margin-bottom: 14px;
+    }
+
+    .qty-control {
+      display: flex; align-items: center;
+      border: 2px solid var(--border); border-radius: var(--radius-sm);
+      overflow: hidden; height: 52px;
+    }
+    .qty-btn {
+      width: 44px; height: 100%;
+      background: var(--bg); border: none;
+      font-size: 20px; font-family: 'Nunito', sans-serif;
+      font-weight: 900; color: var(--dark);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .qty-btn:hover { background: var(--border); }
+    .qty-input {
+      width: 52px; height: 100%;
+      border: none; outline: none; text-align: center;
+      font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 800;
+      color: var(--dark); background: white;
+    }
+
+    .btn-add-cart {
+      flex: 1; height: 52px;
+      background: var(--orange); color: white; border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 16px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .15s, transform .1s;
+    }
+    .btn-add-cart:hover { background: #e05e00; transform: translateY(-1px); }
+
+    .btn-buy-now {
+      width: 100%; height: 52px;
+      background: var(--dark); color: white; border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 16px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .15s;
+    }
+    .btn-buy-now:hover { background: #1e293b; }
+
+    .vipps-note {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 12px; font-size: 13px; color: var(--mid); font-weight: 600;
+    }
+    .vipps-note .vipps-chip { background: #FF5B24; color: white; font-size: 11px; font-weight: 900; padding: 3px 10px; border-radius: 999px; }
+
+    .trust-row {
+      display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap;
+    }
+    .trust-pill {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; color: var(--mid);
+    }
+
+    /* ── TABS ────────────────────────────────── */
+    .tabs-section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    .tab-bar {
+      display: flex; border-bottom: 2px solid var(--border);
+      margin-bottom: 32px; gap: 4px;
+    }
+    .tab-btn {
+      background: none; border: none; border-bottom: 3px solid transparent;
+      padding: 14px 24px; font-family: 'Nunito', sans-serif;
+      font-size: 15px; font-weight: 800; color: var(--mid);
+      cursor: pointer; margin-bottom: -2px;
+      transition: color .15s, border-color .15s;
+    }
+    .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
+    .tab-btn:hover:not(.active) { color: var(--dark); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Tab: Beskrivelse */
+    .desc-grid {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 48px;
+    }
+    .desc-text h3 { font-size: 22px; font-weight: 900; margin-bottom: 14px; }
+    .desc-text p { font-size: 16px; color: var(--mid); font-weight: 600; line-height: 1.8; margin-bottom: 16px; }
+
+    .desc-highlights { margin-top: 24px; }
+    .desc-highlights h4 { font-size: 16px; font-weight: 800; margin-bottom: 14px; }
+    .highlight-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .highlight-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 15px; font-weight: 600; color: var(--mid);
+    }
+    .highlight-list li::before {
+      content: '✓'; color: var(--green);
+      font-weight: 900; font-size: 14px; margin-top: 2px;
+      background: var(--green-lt); width: 22px; height: 22px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    .desc-box {
+      background: var(--bg); border-radius: var(--radius);
+      border: 2px solid var(--border); padding: 24px;
+    }
+    .desc-box-title { font-size: 16px; font-weight: 900; margin-bottom: 16px; color: var(--dark); }
+    .spec-mini { display: flex; flex-direction: column; gap: 10px; }
+    .spec-mini-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
+    .spec-mini-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .spec-mini-label { color: var(--mid); font-weight: 600; }
+    .spec-mini-value { font-weight: 800; color: var(--dark); }
+
+    /* Tab: Video */
+    .video-placeholder {
+      background: var(--bg); border-radius: var(--radius-lg);
+      border: 2px dashed var(--border); aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto;
+    }
+    .video-play { font-size: 64px; }
+    .video-placeholder p { font-size: 18px; font-weight: 700; color: var(--mid); }
+    .video-placeholder small { font-size: 14px; color: #94a3b8; font-weight: 600; }
+
+    /* Tab: Tekniske data */
+    .specs-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .spec-card {
+      background: var(--bg); border-radius: var(--radius);
+      border: 2px solid var(--border); overflow: hidden;
+    }
+    .spec-card-header {
+      background: var(--dark); color: white;
+      padding: 12px 20px; font-size: 13px; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .spec-rows { padding: 0 20px; }
+    .spec-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { color: var(--mid); font-weight: 600; }
+    .spec-value { font-weight: 800; color: var(--dark); text-align: right; }
+
+    /* ── RELATED PRODUCTS ────────────────────── */
+    .related-section {
+      background: var(--bg);
+      border-top: 2px solid var(--border);
+      padding: 60px 24px;
+    }
+    .related-inner { max-width: 1280px; margin: 0 auto; }
+    .section-tag { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+    .section-title { font-size: clamp(24px, 3vw, 36px); font-weight: 900; color: var(--dark); margin-bottom: 8px; }
+    .section-sub { font-size: 15px; color: var(--mid); font-weight: 600; margin-bottom: 32px; }
+
+    .related-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .product-card {
+      background: white; border-radius: var(--radius);
+      border: 2px solid var(--border); overflow: hidden;
+      text-decoration: none; display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.1);
+      border-color: var(--blue);
+    }
+    .product-card-img-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #f8fafc; }
+    .product-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .product-card:hover .product-card-img { transform: scale(1.04); }
+    .sale-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--red); color: white;
+      font-size: 11px; font-weight: 900; letter-spacing: 0.06em;
+      padding: 4px 10px; border-radius: 999px;
+    }
+    .product-card-body { padding: 16px 16px 8px; flex: 1; }
+    .product-age-badge {
+      display: inline-block; font-size: 11px; font-weight: 800;
+      padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+    }
+    .product-age-badge.green  { background: var(--green-lt); color: var(--green); }
+    .product-age-badge.blue   { background: var(--blue-lt);  color: #0284c7;      }
+    .product-age-badge.orange { background: var(--orange-lt); color: var(--orange); }
+    .product-card-title { font-size: 15px; font-weight: 800; color: var(--dark); line-height: 1.3; margin-bottom: 4px; }
+    .product-card-type  { font-size: 12px; color: var(--mid); font-weight: 600; }
+    .product-card-footer { padding: 12px 16px 16px; }
+    .product-price-old  { font-size: 13px; color: var(--mid); text-decoration: line-through; font-weight: 600; }
+    .product-price      { font-size: 20px; font-weight: 900; color: var(--dark); }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer { background: var(--dark); color: #94a3b8; padding: 40px 24px 0; }
+    .footer-bottom {
+      max-width: 1280px; margin: 0 auto;
+      border-top: 1px solid #1e293b;
+      padding: 20px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 13px; font-weight: 600; }
+    .payment-icons { display: flex; gap: 10px; align-items: center; }
+    .pay-badge { background: #1e293b; color: #94a3b8; border-radius: 6px; padding: 5px 10px; font-size: 11px; font-weight: 800; }
+    .pay-badge.vipps { background: #FF5B24; color: white; }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 1024px) {
+      .product-section { grid-template-columns: 1fr; gap: 32px; }
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+      .specs-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .key-features { grid-template-columns: 1fr; }
+      .desc-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">🚚 <span>Gratis frakt</span> over kr 999 &nbsp;|&nbsp; 🔒 Trygg betaling med Vipps &nbsp;|&nbsp; ✅ 14 dagers returrett</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="Engros%20Service_files/Engros-Service-Mini-ATV-01-1.png" alt="Engros Service Mini-ATV">
+    </a>
+    <nav>
+      <a href="index.html">Hjem</a>
+      <a href="#">Butikk</a>
+      <a href="#">Bensindrevet</a>
+      <a href="#">Elektrisk</a>
+      <a href="#">Om oss</a>
+      <a href="#">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Søk etter ATV...">
+      </div>
+      <a href="#" class="cart-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Handlekurv
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb">
+    <a href="index.html">🏠 Hjem</a>
+    <span class="sep">/</span>
+    <a href="#">Bensindrevet ATV</a>
+    <span class="sep">/</span>
+    <a href="#">110cc – 125cc</a>
+    <span class="sep">/</span>
+    <span class="current">Mancini Farmer 110CC revers speedometer</span>
+  </div>
+</div>
+
+<!-- PRODUCT SECTION -->
+<div class="product-section">
+
+  <!-- LEFT: Gallery -->
+  <div class="product-gallery">
+    <div class="main-image-wrap">
+      <img id="mainImg" src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/69be4d94-59e6-47ce-a783-27f381411df6-600x450.jpeg" alt="Mancini Farmer 110CC">
+    </div>
+    <div class="thumbnail-row">
+      <div class="thumb active" onclick="setImg(this, 'Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/69be4d94-59e6-47ce-a783-27f381411df6-600x450.jpeg')">
+        <img src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/69be4d94-59e6-47ce-a783-27f381411df6-600x450.jpeg" alt="Bilde 1">
+      </div>
+      <div class="thumb" onclick="setImg(this, 'Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/b2da43a6-2d4d-40d6-88d0-c846773f937d-600x450.jpeg')">
+        <img src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/b2da43a6-2d4d-40d6-88d0-c846773f937d-600x450.jpeg" alt="Bilde 2">
+      </div>
+      <div class="thumb" onclick="setImg(this, 'Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/bce4d8f6-79ed-4c71-b790-640178062cf3-600x450.jpeg')">
+        <img src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/bce4d8f6-79ed-4c71-b790-640178062cf3-600x450.jpeg" alt="Bilde 3">
+      </div>
+      <div class="thumb" onclick="setImg(this, 'Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/c0d031cc-862f-4918-bf7e-b41d0cd902eb-600x450.jpeg')">
+        <img src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/c0d031cc-862f-4918-bf7e-b41d0cd902eb-600x450.jpeg" alt="Bilde 4">
+      </div>
+      <div class="thumb" onclick="setImg(this, 'Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/daa43ccf-b0cd-4ff4-aa0a-31141f578a7f-1-600x450.jpeg')">
+        <img src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/daa43ccf-b0cd-4ff4-aa0a-31141f578a7f-1-600x450.jpeg" alt="Bilde 5">
+      </div>
+      <div class="thumb" onclick="setImg(this, 'Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/df5ad4de-0763-4f44-b77c-28a44ce9fbe7-600x450.jpeg')">
+        <img src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/df5ad4de-0763-4f44-b77c-28a44ce9fbe7-600x450.jpeg" alt="Bilde 6">
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Info -->
+  <div class="product-info">
+    <div class="product-category-tag">⛽ Bensindrevet · 110cc · Nyankomne</div>
+    <h1 class="product-title">Mancini Farmer 110CC revers speedometer</h1>
+
+    <div class="price-block">
+      <div class="price-current">kr 12 990,00</div>
+    </div>
+
+    <div class="age-badge">
+      👦 Anbefalt alder: 7–12 år
+    </div>
+
+    <p class="short-desc">
+      Mancini Farmer 110CC er en robust og morsom ATV for barn og ungdom fra 7 år. Med automatgir, elektrisk start og justerbar topphastighet er den trygg for nybegynnere og spennende nok for de erfarne. Perfekt for norsk terreng — skog, mark og grus.
+    </p>
+
+    <div class="key-features">
+      <div class="key-feat">
+        <span class="key-feat-icon">⚡</span>
+        <span class="key-feat-text">Elektrisk start</span>
+      </div>
+      <div class="key-feat">
+        <span class="key-feat-icon">🔄</span>
+        <span class="key-feat-text">Revers-gir</span>
+      </div>
+      <div class="key-feat">
+        <span class="key-feat-icon">🏎️</span>
+        <span class="key-feat-text">Justerbar fart (6–50 km/h)</span>
+      </div>
+      <div class="key-feat">
+        <span class="key-feat-icon">🛡️</span>
+        <span class="key-feat-text">CE-godkjent og trygg</span>
+      </div>
+      <div class="key-feat">
+        <span class="key-feat-icon">📊</span>
+        <span class="key-feat-text">Speedometer display</span>
+      </div>
+      <div class="key-feat">
+        <span class="key-feat-icon">🔧</span>
+        <span class="key-feat-text">Automatisk girkasse</span>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Qty + Add to cart -->
+    <div class="add-row">
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <input class="qty-input" type="number" id="qty" value="1" min="1">
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+      <button class="btn-add-cart" onclick="this.textContent='✓ Lagt i handlekurv!'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Legg i handlekurv
+      </button>
+    </div>
+
+    <button class="btn-buy-now">
+      ⚡ Kjøp nå med Vipps
+    </button>
+
+    <div class="vipps-note">
+      <span class="vipps-chip">VIPPS</span>
+      Betal trygt og enkelt med Vipps — norges mest brukte betalingsmetode
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-pill">✅ På lager</div>
+      <div class="trust-pill">🚚 Fri frakt</div>
+      <div class="trust-pill">↩️ 14 dagers retur</div>
+      <div class="trust-pill">🛡️ CE-godkjent</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TABS SECTION -->
+<div class="tabs-section">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('beskrivelse', this)">📄 Beskrivelse</button>
+    <button class="tab-btn" onclick="showTab('video', this)">▶️ Video</button>
+    <button class="tab-btn" onclick="showTab('spesifikasjoner', this)">🔧 Tekniske data</button>
+  </div>
+
+  <!-- TAB: Beskrivelse -->
+  <div id="tab-beskrivelse" class="tab-content active">
+    <div class="desc-grid">
+      <div class="desc-text">
+        <h3>Om Mancini Farmer 110CC</h3>
+        <p>Mancini Farmer 110CC er en av våre mest populære modeller for barn i alderen 7–12 år. Den kombinerer ekte ATV-kjøreglede med de sikkerhetsfunksjonene foreldre trenger for å føle seg trygge. Med justerbar topphastighet fra 6 til 50 km/h kan du starte forsiktig og øke utfordringen etter hvert som barnet ditt blir mer erfaren.</p>
+        <p>Elektrisk start, automatgir og revers gjør den enkel å bruke selv for nybegynnere. Speedometer-displayet gir full oversikt, og robuste støtdempere foran og bak sørger for en behagelig tur selv i ujevnt terreng. Kjededrift og skivebremser bak gir god kontroll på alle underlag.</p>
+        <p>Levert med fri frakt til hele landet. Norsk kundeservice tilgjengelig på telefon og e-post.</p>
+
+        <div class="desc-highlights">
+          <h4>Hvorfor velge Mancini Farmer 110CC?</h4>
+          <ul class="highlight-list">
+            <li>Justerbar topphastighet — trygg fra første dag, utfordrende etter hvert</li>
+            <li>Elektrisk start — ingen problemer med å starte motoren</li>
+            <li>Automatisk girkasse — barnet kan fokusere på å kjøre, ikke girskifte</li>
+            <li>Revers-gir — enkel manøvrering i trangt terreng</li>
+            <li>CE-godkjent og oppfyller europeiske sikkerhetsstandarder</li>
+            <li>Robust konstruksjon som tåler norsk vær og terreng</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="desc-box">
+          <div class="desc-box-title">🔑 Nøkkeldata</div>
+          <div class="spec-mini">
+            <div class="spec-mini-row">
+              <span class="spec-mini-label">Motor</span>
+              <span class="spec-mini-value">110CC 4-takt</span>
+            </div>
+            <div class="spec-mini-row">
+              <span class="spec-mini-label">Effekt</span>
+              <span class="spec-mini-value">7,5 hk</span>
+            </div>
+            <div class="spec-mini-row">
+              <span class="spec-mini-label">Maks hastighet</span>
+              <span class="spec-mini-value">6–50 km/h</span>
+            </div>
+            <div class="spec-mini-row">
+              <span class="spec-mini-label">Girkasse</span>
+              <span class="spec-mini-value">Automatisk + revers</span>
+            </div>
+            <div class="spec-mini-row">
+              <span class="spec-mini-label">Start</span>
+              <span class="spec-mini-value">Elektrisk start</span>
+            </div>
+            <div class="spec-mini-row">
+              <span class="spec-mini-label">Bensintenk</span>
+              <span class="spec-mini-value">3 L</span>
+            </div>
+            <div class="spec-mini-row">
+              <span class="spec-mini-label">Maks. førersvekt</span>
+              <span class="spec-mini-value">130 kg</span>
+            </div>
+            <div class="spec-mini-row">
+              <span class="spec-mini-label">Anbefalt alder</span>
+              <span class="spec-mini-value">7–12 år</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: Video -->
+  <div id="tab-video" class="tab-content">
+    <div class="video-placeholder">
+      <div class="video-play">▶️</div>
+      <p>Video kommer snart</p>
+      <small>Vi jobber med å lage en produktvideo for Mancini Farmer 110CC. Sjekk tilbake igjen!</small>
+    </div>
+  </div>
+
+  <!-- TAB: Tekniske data -->
+  <div id="tab-spesifikasjoner" class="tab-content">
+    <div class="specs-grid">
+
+      <div class="spec-card">
+        <div class="spec-card-header">⚙️ Motor & Ytelse</div>
+        <div class="spec-rows">
+          <div class="spec-row">
+            <span class="spec-label">Modell</span>
+            <span class="spec-value">ATV Farmer 110CC speedometer</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Motortype</span>
+            <span class="spec-value">110CC 4-takt</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Effekt</span>
+            <span class="spec-value">7,5 hk</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Start</span>
+            <span class="spec-value">Elektrisk start</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Tenning</span>
+            <span class="spec-value">CDI</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Maks. hastighet</span>
+            <span class="spec-value">6–50 km/h (justerbar)</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Bensintenk</span>
+            <span class="spec-value">3 L</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-card-header">🔄 Drivverk & Bremser</div>
+        <div class="spec-rows">
+          <div class="spec-row">
+            <span class="spec-label">Girkasse</span>
+            <span class="spec-value">Automatisk + revers</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Drivverk</span>
+            <span class="spec-value">Kjededrift</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Forbremse</span>
+            <span class="spec-value">Trommelbremse</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Bakbremse</span>
+            <span class="spec-value">Skivebremse 155mm / 6"</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Støtdemper foran</span>
+            <span class="spec-value">Fjær / olje</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Støtdemper bak</span>
+            <span class="spec-value">Fjær / olje (dobbel)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-card-header">📐 Mål & Vekt</div>
+        <div class="spec-rows">
+          <div class="spec-row">
+            <span class="spec-label">Mål (LxBxH)</span>
+            <span class="spec-value">1420 × 880 × 900 mm</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Setehøyde</span>
+            <span class="spec-value">650 mm</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Hjulbase</span>
+            <span class="spec-value">925 mm</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Nettovekt</span>
+            <span class="spec-value">92 kg</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Bruttovekt</span>
+            <span class="spec-value">107 kg</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Maks. førersvekt</span>
+            <span class="spec-value">130 kg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-card-header">🛞 Dekk & Utstyr</div>
+        <div class="spec-rows">
+          <div class="spec-row">
+            <span class="spec-label">Dekk foran</span>
+            <span class="spec-value">3.5-7</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Dekk bak</span>
+            <span class="spec-value">3.5-7</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Display</span>
+            <span class="spec-value">Speedometer</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Belysning</span>
+            <span class="spec-value">LED-lys foran og bak</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Sikkerhet</span>
+            <span class="spec-value">Dødmannsknapp</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Sertifisering</span>
+            <span class="spec-value">CE-godkjent</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- RELATED PRODUCTS -->
+<section class="related-section">
+  <div class="related-inner">
+    <div class="section-tag">DU LIKER KANSKJE OGSÅ</div>
+    <div class="section-title">Lignende produkter</div>
+    <div class="section-sub">Andre kunder så på disse modellene</div>
+    <div class="related-grid">
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img class="product-card-img" src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/mini_atv_rosa1-1-600x450.jpg" alt="Mini ATV 50cc Pink">
+          <span class="sale-badge">SALG</span>
+        </div>
+        <div class="product-card-body">
+          <span class="product-age-badge green">3–8 år</span>
+          <div class="product-card-title">Mini ATV 50cc Pink Edition</div>
+          <div class="product-card-type">⛽ Bensindrevet · 50cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 6 990,00</div>
+          <div class="product-price" style="color:var(--red)">kr 5 990,00</div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img class="product-card-img" src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/el_atv_1200wred1-600x450.jpg" alt="Renegade el ATV 1200W">
+          <span class="sale-badge">SALG</span>
+        </div>
+        <div class="product-card-body">
+          <span class="product-age-badge blue">6–10 år</span>
+          <div class="product-card-title">Renegade el ATV kardang børsteløs 1200W</div>
+          <div class="product-card-type">⚡ Elektrisk · 1200W</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 12 990,00</div>
+          <div class="product-price" style="color:var(--red)">kr 9 990,00</div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img class="product-card-img" src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/el_atv_1000w-600x450.jpg" alt="Elektrisk Mini ATV 1000W">
+          <span class="sale-badge">SALG</span>
+        </div>
+        <div class="product-card-body">
+          <span class="product-age-badge blue">6–10 år</span>
+          <div class="product-card-title">Elektrisk mini ATV for barn 1000W Renegade</div>
+          <div class="product-card-type">⚡ Elektrisk · 1000W</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 9 490,00</div>
+          <div class="product-price" style="color:var(--red)">kr 8 290,00</div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-card-img-wrap">
+          <img class="product-card-img" src="Mancini%20Farmer%20110CC%20revers%20speedometer%20%E2%80%93%20Engros%20Service_files/atv110cc16-600x450.jpg" alt="Challenge ATV 110CC">
+          <span class="sale-badge">SALG</span>
+        </div>
+        <div class="product-card-body">
+          <span class="product-age-badge blue">7–12 år</span>
+          <div class="product-card-title">Challenge ATV 110CC Black Edition</div>
+          <div class="product-card-type">⛽ Bensindrevet · 110cc</div>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-price-old">kr 12 990,00</div>
+          <div class="product-price" style="color:var(--red)">kr 10 990,00</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">Copyright 2026 © Engros Service</div>
+    <div class="payment-icons">
+      <span class="pay-badge vipps">VIPPS</span>
+      <span class="pay-badge">VISA</span>
+      <span class="pay-badge">MASTERCARD</span>
+      <span class="pay-badge">STRIPE</span>
+      <span class="pay-badge">PAYPAL</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setImg(el, src) {
+    document.getElementById('mainImg').src = src;
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function changeQty(delta) {
+    const input = document.getElementById('qty');
+    const newVal = Math.max(1, parseInt(input.value) + delta);
+    input.value = newVal;
+  }
+
+  function showTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
