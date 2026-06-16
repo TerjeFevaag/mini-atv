@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, ShieldCheck, Truck, RotateCcw, Headphones, Zap, Fuel, Star } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Truck, ArrowCounterClockwise, Headphones, Lightning, GasPump, Star, Tag } from '@phosphor-icons/react/dist/ssr'
 import ProductCard from '@/components/ui/ProductCard'
+import KidsProductTabs from '@/components/home/KidsProductTabs'
 import { products } from '@/lib/products'
 
 const categories = [
@@ -86,7 +87,7 @@ export default function HomePage() {
         <div className="absolute top-8 right-8 w-64 h-64 bg-orange-500/20 rounded-full blur-3xl" />
         <div className="absolute bottom-8 left-8 w-48 h-48 bg-sky-500/20 rounded-full blur-3xl" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="max-w-2xl">
             <span className="inline-block bg-orange-500 text-white text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest mb-4">
               🏁 Norges største utvalg av Mini-ATV
@@ -148,15 +149,16 @@ export default function HomePage() {
       {/* ─── TRUST BAR ─── */}
       <section className="bg-white border-y border-slate-100 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { icon: <ShieldCheck className="w-6 h-6 text-green-500" />, title: 'CE-godkjent & trygg', desc: 'Alle ATV-er møter europeiske sikkerhetsstandarder' },
-              { icon: <Truck className="w-6 h-6 text-sky-500" />, title: 'Gratis levering', desc: 'Fri frakt på alle ordre over kr 999' },
-              { icon: <RotateCcw className="w-6 h-6 text-orange-500" />, title: '14 dagers retur', desc: 'Ikke fornøyd? Send den tilbake uten spørsmål' },
-              { icon: <Headphones className="w-6 h-6 text-purple-500" />, title: 'Kundeservice', desc: 'Ring +47 400 01 767 — vi hjelper deg' },
+              { icon: <Tag weight="fill" className="w-5 h-5 text-white" />, title: 'Prisgaranti', desc: '100% best pris — finn det billigere og vi matcher' },
+              { icon: <ShieldCheck weight="fill" className="w-5 h-5 text-white" />, title: 'CE-godkjent & trygg', desc: 'Alle ATV-er møter europeiske sikkerhetsstandarder' },
+              { icon: <Truck weight="fill" className="w-5 h-5 text-white" />, title: 'Gratis levering', desc: 'Fri frakt på alle ordre over kr 999' },
+              { icon: <ArrowCounterClockwise weight="fill" className="w-5 h-5 text-white" />, title: '14 dagers retur', desc: 'Ikke fornøyd? Send den tilbake uten spørsmål' },
+              { icon: <Headphones weight="fill" className="w-5 h-5 text-white" />, title: 'Kundeservice', desc: 'Ring +47 400 01 767 — vi hjelper deg' },
             ].map(t => (
               <div key={t.title} className="flex items-start gap-3">
-                <div className="shrink-0 mt-0.5">{t.icon}</div>
+                <div className="w-9 h-9 bg-orange-500 rounded-xl flex items-center justify-center shrink-0">{t.icon}</div>
                 <div>
                   <div className="font-extrabold text-slate-900 text-sm">{t.title}</div>
                   <div className="text-xs text-slate-500 mt-0.5">{t.desc}</div>
@@ -177,14 +179,14 @@ export default function HomePage() {
           </div>
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
-              <Fuel className="w-5 h-5 text-orange-500" />
+              <GasPump weight="fill" className="w-5 h-5 text-orange-500" />
               <h3 className="font-extrabold text-slate-900 text-lg">Bensindrevet ATV</h3>
               <span className="text-sm text-slate-400 font-semibold">— Klassisk kraft for terreng og skog</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {categories.slice(0, 3).map(cat => (
                 <Link key={cat.title} href={cat.href} className={`group card ${cat.bg} border-0`}>
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative h-56 overflow-hidden">
                     <Image src={cat.image} alt={cat.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 640px) 100vw, 33vw" />
                     <span className={`absolute top-3 left-3 ${cat.badgeColor} text-white text-xs font-extrabold px-3 py-1 rounded-full`}>{cat.badge}</span>
                   </div>
@@ -199,14 +201,14 @@ export default function HomePage() {
           </div>
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Zap className="w-5 h-5 text-sky-500" />
+              <Lightning weight="fill" className="w-5 h-5 text-sky-500" />
               <h3 className="font-extrabold text-slate-900 text-lg">Elektrisk ATV</h3>
               <span className="text-sm text-slate-400 font-semibold">— Stillegående og miljøvennlig</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {categories.slice(3).map(cat => (
                 <Link key={cat.title} href={cat.href} className={`group card ${cat.bg} border-0`}>
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative h-56 overflow-hidden">
                     <Image src={cat.image} alt={cat.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 640px) 100vw, 33vw" />
                     <span className={`absolute top-3 left-3 ${cat.badgeColor} text-white text-xs font-extrabold px-3 py-1 rounded-full`}>{cat.badge}</span>
                   </div>
@@ -229,17 +231,8 @@ export default function HomePage() {
             <span className="section-tag">For barn & ungdom</span>
             <h2 className="text-3xl font-extrabold text-slate-900 mb-2">Alle Mini-ATV for barn</h2>
             <p className="text-slate-500 font-semibold">Elektriske og bensindrevne modeller fra 3 til 12 år — alle CE-godkjente</p>
-            <div className="flex items-center justify-center gap-4 mt-4 flex-wrap">
-              <span className="flex items-center gap-1.5 text-xs font-bold text-green-700"><span className="w-3 h-3 bg-green-400 rounded-full inline-block" />3–6 år</span>
-              <span className="flex items-center gap-1.5 text-xs font-bold text-sky-700"><span className="w-3 h-3 bg-sky-400 rounded-full inline-block" />7–10 år</span>
-              <span className="flex items-center gap-1.5 text-xs font-bold text-orange-700"><span className="w-3 h-3 bg-orange-400 rounded-full inline-block" />10–12 år</span>
-            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {kidsProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <KidsProductTabs products={kidsProducts} />
         </div>
       </section>
 
@@ -303,7 +296,7 @@ export default function HomePage() {
               </div>
               <div className="absolute -bottom-4 -left-4 bg-orange-500 text-white rounded-2xl px-4 py-3 shadow-lg">
                 <div className="flex items-center gap-2">
-                  <Star className="w-5 h-5 fill-white" />
+                  <Star weight="fill" className="w-5 h-5 text-white" />
                   <div>
                     <div className="font-extrabold text-sm">15 000+</div>
                     <div className="text-xs opacity-90">fornøyde kunder</div>

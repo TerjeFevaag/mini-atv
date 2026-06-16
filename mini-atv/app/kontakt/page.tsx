@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { MapPin, Phone, Mail, Clock, CheckCircle } from 'lucide-react'
+import { MapPin, Phone, Envelope, Clock, CheckCircle } from '@phosphor-icons/react'
 
 export default function ContactPage() {
   const [form, setForm] = useState({ navn: '', epost: '', telefon: '', melding: '' })
@@ -38,8 +38,8 @@ export default function ContactPage() {
               <h2 className="font-extrabold text-slate-900 text-xl mb-5">Kontaktinformasjon</h2>
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-orange-500" />
+                  <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shrink-0">
+                    <Phone weight="fill" className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <div className="font-extrabold text-slate-900 text-sm">Telefon</div>
@@ -47,8 +47,8 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-sky-100 rounded-xl flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-sky-500" />
+                  <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shrink-0">
+                    <Envelope weight="fill" className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <div className="font-extrabold text-slate-900 text-sm">E-post</div>
@@ -56,8 +56,8 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-green-500" />
+                  <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shrink-0">
+                    <MapPin weight="fill" className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <div className="font-extrabold text-slate-900 text-sm">Adresse</div>
@@ -68,8 +68,8 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-purple-500" />
+                  <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shrink-0">
+                    <Clock weight="fill" className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <div className="font-extrabold text-slate-900 text-sm mb-1">Åpningstider</div>
@@ -89,20 +89,18 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="rounded-2xl overflow-hidden bg-slate-100 h-48 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                <p className="text-sm text-slate-400 font-semibold">Solgaard Skog 120, Moss</p>
-                <a
-                  href="https://maps.google.com/?q=Solgaard+Skog+120,+1599+Moss"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-orange-500 font-bold hover:underline mt-1 block"
-                >
-                  Åpne i Google Maps →
-                </a>
-              </div>
+            {/* Map */}
+            <div className="rounded-2xl overflow-hidden h-64">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d40277.184653377895!2d10.704818!3d59.43888700000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464152f2c93d5147%3A0x8b719cfd19766361!2sSolgaard%20Skog%20120%2C%201599%20Moss%2C%20Norway!5e1!3m2!1sen!2sus!4v1781577586723!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Engros Service lokasjon"
+              />
             </div>
           </div>
 

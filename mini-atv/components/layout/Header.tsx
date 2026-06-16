@@ -1,7 +1,8 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
-import { ShoppingCart, Search, Menu, X, ChevronDown } from 'lucide-react'
+import { ShoppingCart, MagnifyingGlass, List, X, CaretDown } from '@phosphor-icons/react'
 import { useCartStore } from '@/store/cart'
 
 export default function Header() {
@@ -21,14 +22,15 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center">
-              <span className="text-white font-extrabold text-lg">M</span>
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-extrabold text-slate-900 text-lg leading-tight">Mini-ATV</div>
-              <div className="text-orange-500 text-xs font-semibold leading-tight">.no</div>
-            </div>
+          <Link href="/" className="flex items-center shrink-0">
+            <Image
+              src="/images/logo.png"
+              alt="Engros Service Mini-ATV"
+              width={160}
+              height={50}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -38,7 +40,7 @@ export default function Header() {
             </Link>
             <div className="relative group">
               <button className="flex items-center gap-1 px-4 py-2 text-slate-700 hover:text-orange-500 font-semibold text-sm rounded-lg hover:bg-orange-50 transition-colors">
-                Bensindrevet <ChevronDown className="w-3 h-3" />
+                Bensindrevet <CaretDown className="w-3 h-3" />
               </button>
               <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="p-2">
@@ -50,7 +52,7 @@ export default function Header() {
             </div>
             <div className="relative group">
               <button className="flex items-center gap-1 px-4 py-2 text-slate-700 hover:text-orange-500 font-semibold text-sm rounded-lg hover:bg-orange-50 transition-colors">
-                Elektrisk <ChevronDown className="w-3 h-3" />
+                Elektrisk <CaretDown className="w-3 h-3" />
               </button>
               <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="p-2">
@@ -76,7 +78,7 @@ export default function Header() {
               className="p-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg transition-colors"
               aria-label="Søk"
             >
-              <Search className="w-5 h-5" />
+              <MagnifyingGlass className="w-5 h-5" />
             </button>
 
             {/* Cart */}
@@ -95,7 +97,7 @@ export default function Header() {
               className="md:hidden p-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg transition-colors"
               aria-label="Meny"
             >
-              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {menuOpen ? <X className="w-5 h-5" /> : <List className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -104,7 +106,7 @@ export default function Header() {
         {searchOpen && (
           <div className="pb-3">
             <form onSubmit={e => { e.preventDefault(); window.location.href = `/butikk?q=${searchQuery}` }} className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 value={searchQuery}
