@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, ShieldCheck, Truck, ArrowCounterClockwise, Headphones, Lightning, GasPump, Star, Tag } from '@phosphor-icons/react/dist/ssr'
+import { ArrowRight, ShieldCheck, Truck, ArrowCounterClockwise, Headphones, Lightning, GasPump, Star, Tag, SmileySticker, Rocket, Crown } from '@phosphor-icons/react/dist/ssr'
 import ProductCard from '@/components/ui/ProductCard'
 import KidsProductTabs from '@/components/home/KidsProductTabs'
 import { products } from '@/lib/products'
@@ -63,21 +63,20 @@ const categories = [
 ]
 
 const ageGroups = [
-  { label: '2,5–6 år', emoji: '🌱', desc: 'Trygg første ATV', color: 'bg-green-500', href: '/#produkter' },
-  { label: '7–10 år', emoji: '🚀', desc: 'Mer kraft og fart', color: 'bg-sky-500', href: '/#produkter' },
-  { label: '10–12 år', emoji: '🏆', desc: 'Racing-opplevelse', color: 'bg-orange-500', href: '/#produkter' },
+  { label: '2,5–6 år', icon: 'smiley', desc: 'Trygg første ATV', color: 'bg-green-500', href: '/#produkter' },
+  { label: '7–10 år', icon: 'rocket', desc: 'Mer kraft og fart', color: 'bg-sky-500', href: '/#produkter' },
+  { label: '10–12 år', icon: 'crown', desc: 'Racing-opplevelse', color: 'bg-orange-500', href: '/#produkter' },
 ]
 
 export default function HomePage() {
   const kidsProducts = products.filter(p => p.ageGroup !== 'voksen')
-  const adultProducts = products.filter(p => p.ageGroup === 'voksen')
 
   return (
     <>
       {/* ─── HERO ─── */}
       <section className="relative min-h-[580px] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <Image
-          src="/images/homepage/hero-atv-jrfmPW6S.jpg"
+          src="/images/homepage/hjem-hero.jpeg"
           alt="Mini-ATV hero"
           fill
           priority
@@ -136,7 +135,9 @@ export default function HomePage() {
             {ageGroups.map(ag => (
               <Link key={ag.label} href={ag.href} className="group text-center">
                 <div className={`${ag.color} w-20 h-20 rounded-3xl flex flex-col items-center justify-center mx-auto mb-3 shadow-lg group-hover:scale-110 transition-transform duration-200`}>
-                  <span className="text-3xl">{ag.emoji}</span>
+                  {ag.icon === 'smiley' && <SmileySticker weight="fill" className="w-10 h-10 text-white" />}
+                  {ag.icon === 'rocket' && <Rocket weight="fill" className="w-10 h-10 text-white" />}
+                  {ag.icon === 'crown' && <Crown weight="fill" className="w-10 h-10 text-white" />}
                 </div>
                 <div className="font-extrabold text-slate-900 text-base">{ag.label}</div>
                 <div className="text-xs text-slate-500 font-semibold">{ag.desc}</div>
@@ -236,25 +237,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── ADULT/SPORT ─── */}
-      {adultProducts.length > 0 && (
-        <section className="bg-slate-900 py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <span className="inline-block text-orange-400 font-bold text-xs tracking-widest uppercase mb-2">Sport & Racing</span>
-              <h2 className="text-3xl font-extrabold text-white mb-2">Kraftige ATV-er for voksne</h2>
-              <p className="text-slate-400 font-semibold">Registreringspliktige modeller for ungdom og voksne</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {adultProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
-      {/* ─── BRAND STORY ─── */}
+{/* ─── BRAND STORY ─── */}
       <section className="bg-green-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -287,7 +271,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/homepage/adventure-lifestyle-CJgNoD9h.jpg"
+                  src="/images/homepage/hjem-image.jpeg"
                   alt="Familie på ATV-tur"
                   fill
                   className="object-cover"

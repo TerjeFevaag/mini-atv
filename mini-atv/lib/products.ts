@@ -630,38 +630,6 @@ export const products: Product[] = [
     ageGroup: '3-6',
     color: 'green',
   },
-  {
-    id: '23',
-    name: 'YOKI 450CC BEAST lang utgave',
-    slug: 'yoki-450cc-beast-lang-utgave',
-    price: 56990,
-    salePrice: null,
-    description: 'Norgesnyheten YOKI Beast 450cc — registreres som klasse T3B og kjøres med klasse B sertifikat. Kraftig, prisgunstig og fullspekket firehjuling med moderne teknologi, rå ytelse og slitesterk konstruksjon. Montering inklusiv skilt kr 3 900.',
-    specs: {
-      'Registrering': 'Klasse T3B (kjøres med klasse B sertifikat)',
-      'Motor': 'Ensylinder, vannkjølt, firetakt',
-      'Slagvolum': '391cc',
-      'Maks effekt': '20 kW / 6500 o/min',
-      'Girkasse': 'Automatisk CVT',
-      'Trekkraft': '4WD',
-      'Bremser': 'Skivebremser foran og bak',
-      'Bakkeklaring': '250 mm',
-      'Vekt': '353 kg',
-      'Lastekapasitet': '240 kg',
-      'Drivstofftank': '17 L',
-      'Toppfart': '60 km/t',
-      'Dimensjon (LxBxH)': '2315×1144×1340 mm',
-    },
-    images: [
-      '/images/products/yoki-450cc-beast-lang-utgave-black/atv1_2.png',
-      '/images/products/yoki-450cc-beast-lang-utgave-black/atv8.jpg',
-    ],
-    video: null,
-    category: 'bensindrevet',
-    subcategory: '450cc',
-    ageGroup: 'voksen',
-    color: 'black',
-  },
 ]
 
 export function getProductBySlug(slug: string): Product | undefined {
