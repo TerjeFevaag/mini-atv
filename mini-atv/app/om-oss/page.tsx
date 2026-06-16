@@ -41,7 +41,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-72 lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/homepage/adventure-lifestyle-CJgNoD9h.jpg"
+                src="/images/homepage/om-oss.jpeg"
                 alt="Engros Service"
                 fill
                 className="object-cover"
