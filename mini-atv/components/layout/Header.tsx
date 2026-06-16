@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import { ShoppingCart, MagnifyingGlass, List, X, CaretDown } from '@phosphor-icons/react'
+import { ShoppingCart, MagnifyingGlass, List, X, CaretDown, Truck, ShieldCheck, ArrowCounterClockwise } from '@phosphor-icons/react'
 import { useCartStore } from '@/store/cart'
 
 export default function Header() {
@@ -15,7 +15,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
       {/* Top bar */}
       <div className="bg-orange-500 text-white text-xs font-semibold py-2 text-center px-4">
-        🚚 Gratis frakt over kr 999 &nbsp;|&nbsp; ⚡ Trygg betaling med Vipps &nbsp;|&nbsp; 🔄 14 dagers returrett
+        <span className="inline-flex items-center gap-1.5"><Truck weight="fill" className="w-3.5 h-3.5" /> Gratis frakt over kr 999</span>
+        <span className="mx-3 opacity-50">|</span>
+        <span className="inline-flex items-center gap-1.5"><ShieldCheck weight="fill" className="w-3.5 h-3.5" /> Trygg betaling med Vipps</span>
+        <span className="mx-3 opacity-50">|</span>
+        <span className="inline-flex items-center gap-1.5"><ArrowCounterClockwise weight="bold" className="w-3.5 h-3.5" /> 14 dagers returrett</span>
       </div>
 
       {/* Main nav */}
