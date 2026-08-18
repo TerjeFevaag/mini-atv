@@ -251,7 +251,7 @@ export default function HomePage() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 {[
-                  { icon: '🛡️', title: 'Trygt & Pålitelig', desc: 'CE og ROHS godkjent. Dødmannsknapp på alle modeller.' },
+                  { icon: '🛡️', title: 'Trygt & Pålitelig', desc: 'CE og ROHS godkjent. Dødmannsknapp på alle bensinmodeller.' },
                   { icon: '⚡', title: 'El & Bensin', desc: 'Fra stille elektriske til kraftige bensinmotorer.' },
                   { icon: '🇳🇴', title: 'Norsk natur', desc: 'Laget for norsk terreng. Fri frakt & 14 dagers retur.' },
                 ].map(f => (
