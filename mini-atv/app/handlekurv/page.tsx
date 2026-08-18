@@ -7,8 +7,7 @@ import { formatPrice } from '@/lib/products'
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, totalPrice } = useCartStore()
-  const shipping = totalPrice() >= 999 ? 0 : 299
-  const total = totalPrice() + shipping
+  const total = totalPrice()
 
   if (items.length === 0) {
     return (
@@ -88,13 +87,8 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between text-slate-600">
                 <span>Frakt</span>
-                <span className={shipping === 0 ? 'text-green-600 font-extrabold' : ''}>
-                  {shipping === 0 ? 'Gratis 🎉' : formatPrice(shipping)}
-                </span>
+                <span className="text-slate-500 font-semibold">Beregnes i kassen</span>
               </div>
-              {shipping > 0 && (
-                <p className="text-xs text-slate-400">Fri frakt fra kr 999 — {formatPrice(999 - totalPrice())} igjen</p>
-              )}
               <div className="border-t border-slate-100 pt-3 flex justify-between text-slate-900 font-extrabold text-base">
                 <span>Totalt</span>
                 <span>{formatPrice(total)}</span>
