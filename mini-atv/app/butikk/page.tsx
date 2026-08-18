@@ -10,12 +10,11 @@ function SearchResults() {
   const params = useSearchParams()
   const q = params.get('q')?.toLowerCase().trim() ?? ''
 
-  const results = q.length < 2 ? [] : products.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.description.toLowerCase().includes(q) ||
-    p.subcategory.toLowerCase().includes(q) ||
-    p.category.toLowerCase().includes(q)
-  )
+  const words = q.length < 2 ? [] : q.split(/\s+/).filter(Boolean)
+  const results = words.length === 0 ? [] : products.filter(p => {
+    const haystack = [p.name, p.description, p.subcategory, p.category].join(' ').toLowerCase()
+    return words.every(w => haystack.includes(w))
+  })
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
