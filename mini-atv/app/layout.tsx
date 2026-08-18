@@ -13,7 +13,7 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: 'Mini-ATV.no — Norges beste Mini-ATV for barn og ungdom',
-  description: 'Kjøp Mini-ATV til barn og ungdom (3–12 år). Stort utvalg av elektriske og bensindrevne ATV-er. Fri frakt, trygg betaling med Vipps, 14 dagers returrett.',
+  description: 'Kjøp Mini-ATV til barn og ungdom (3–12 år). Stort utvalg av elektriske og bensindrevne ATV-er. Frakt til hele Norge med PostNord, trygg betaling med Klarna, 14 dagers returrett.',
   keywords: 'mini ATV, barn ATV, elektrisk ATV, bensindrevet ATV, mini firehjuling, ATV for barn',
 }
 

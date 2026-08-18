@@ -121,7 +121,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl font-extrabold text-white mb-4">Klar til å handle?</h2>
           <p className="text-white/90 font-semibold text-lg mb-8">
-            Se vårt store utvalg av Mini-ATV for barn og ungdom — med fri frakt og 14 dagers retur.
+            Se vårt store utvalg av Mini-ATV for barn og ungdom — med levering til hele Norge og 14 dagers retur.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/" className="bg-white text-orange-500 hover:bg-slate-100 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-lg">
