@@ -149,9 +149,8 @@ export default function HomePage() {
       {/* ─── TRUST BAR ─── */}
       <section className="bg-white border-y border-slate-100 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: <Tag weight="fill" className="w-5 h-5 text-white" />, title: 'Prisgaranti', desc: '100% best pris — finn det billigere og vi matcher' },
               { icon: <ShieldCheck weight="fill" className="w-5 h-5 text-white" />, title: 'CE-godkjent & trygg', desc: 'Alle ATV-er møter europeiske sikkerhetsstandarder' },
               { icon: <Truck weight="fill" className="w-5 h-5 text-white" />, title: 'Gratis levering', desc: 'Fri frakt på alle ordre over kr 999' },
               { icon: <ArrowCounterClockwise weight="fill" className="w-5 h-5 text-white" />, title: '14 dagers retur', desc: 'Ikke fornøyd? Send den tilbake uten spørsmål' },
