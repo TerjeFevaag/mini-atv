@@ -5,6 +5,7 @@ import { ShoppingCart, Zap, Fuel } from 'lucide-react'
 import { Product } from '@/lib/types'
 import { formatPrice } from '@/lib/products'
 import { useCartStore } from '@/store/cart'
+import { useToastStore } from '@/store/toast'
 import AgeBadge from './AgeBadge'
 
 const ageBorderColor: Record<string, string> = {
@@ -16,6 +17,7 @@ const ageBorderColor: Record<string, string> = {
 
 export default function ProductCard({ product }: { product: Product }) {
   const addItem = useCartStore(s => s.addItem)
+  const showToast = useToastStore(s => s.show)
   const discountPct = product.salePrice
     ? Math.round((1 - product.salePrice / product.price) * 100)
     : null
@@ -85,7 +87,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         <button
-          onClick={() => addItem(product)}
+          onClick={() => { addItem(product); showToast(product.name) }}
           className="btn-primary w-full justify-center text-sm py-2.5 mt-1"
         >
           <ShoppingCart className="w-4 h-4" />
