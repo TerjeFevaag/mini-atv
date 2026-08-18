@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, ShieldCheck, Truck, ArrowCounterClockwise, Headphones, Lightning, GasPump, Star, Tag, SmileySticker, Rocket, Crown } from '@phosphor-icons/react/dist/ssr'
+import { ArrowRight, ShieldCheck, Truck, ArrowCounterClockwise, Headphones, Lightning, GasPump, Star, SmileySticker, Rocket, Crown } from '@phosphor-icons/react/dist/ssr'
 import KidsProductTabs from '@/components/home/KidsProductTabs'
 import { products } from '@/lib/products'
 
