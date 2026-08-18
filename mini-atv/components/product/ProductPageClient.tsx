@@ -93,7 +93,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
               <ShieldCheck className="w-3.5 h-3.5" /> CE-godkjent
             </span>
             <span className="flex items-center gap-1.5 text-xs font-bold bg-sky-50 text-sky-700 px-3 py-1.5 rounded-full border border-sky-200">
-              <Truck className="w-3.5 h-3.5" /> Fri frakt
+              <Truck className="w-3.5 h-3.5" /> Frakt til hele Norge
             </span>
             <span className="text-xs font-bold bg-orange-50 text-orange-700 px-3 py-1.5 rounded-full border border-orange-200">
               14 dagers retur
