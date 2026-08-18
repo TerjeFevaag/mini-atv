@@ -104,7 +104,7 @@ export default function CartPage() {
               Til kassen <ArrowRight className="w-5 h-5" />
             </Link>
             <div className="flex items-center justify-center gap-2 mt-4">
-              {['VIPPS', 'VISA', 'MC', 'STRIPE'].map(p => (
+              {['VIPPS', 'VISA', 'MC', 'KLARNA'].map(p => (
                 <span key={p} className="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-0.5 rounded">{p}</span>
               ))}
             </div>

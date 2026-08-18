@@ -114,7 +114,7 @@ export default function CheckoutPage() {
                   <input type="radio" name="payment" value="card" checked={payment === 'card'} onChange={() => setPayment('card')} className="text-orange-500" />
                   <div className="flex-1">
                     <div className="font-extrabold text-slate-900 text-sm">Kort (Visa / Mastercard)</div>
-                    <div className="text-xs text-slate-500 font-semibold">Sikker kortbetaling via Stripe</div>
+                    <div className="text-xs text-slate-500 font-semibold">Sikker kortbetaling via Klarna</div>
                   </div>
                   <div className="flex gap-1">
                     {['VISA', 'MC'].map(c => (

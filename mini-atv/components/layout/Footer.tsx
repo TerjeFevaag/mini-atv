@@ -104,7 +104,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-2">
             <span className="text-xs text-slate-500 mr-1">Betaling:</span>
-            {['VIPPS', 'VISA', 'MC', 'STRIPE'].map(p => (
+            {['VIPPS', 'VISA', 'MC', 'KLARNA'].map(p => (
               <span key={p} className="bg-slate-700 text-slate-300 text-xs font-bold px-2 py-1 rounded-md">{p}</span>
             ))}
           </div>
