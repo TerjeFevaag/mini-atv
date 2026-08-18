@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import { products } from '@/lib/products'
 import ProductCard from '@/components/ui/ProductCard'
 import Link from 'next/link'
-import { MagnifyingGlass } from '@phosphor-icons/react'
+import { MagnifyingGlass } from '@phosphor-icons/react/dist/ssr'
 
 function SearchResults() {
   const params = useSearchParams()
