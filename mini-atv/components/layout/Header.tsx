@@ -15,7 +15,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
       {/* Top bar */}
       <div className="bg-orange-500 text-white text-xs font-semibold py-2 text-center px-4">
-        <span className="inline-flex items-center gap-1.5"><Truck weight="fill" className="w-3.5 h-3.5" /> Frakt til hele Norge med PostNord</span>
+        <span className="inline-flex items-center gap-1.5"><Truck weight="fill" className="w-3.5 h-3.5" /> Frakt til hele Norge</span>
         <span className="mx-3 opacity-50">|</span>
         <span className="inline-flex items-center gap-1.5"><ShieldCheck weight="fill" className="w-3.5 h-3.5" /> Trygg betaling med Klarna</span>
         <span className="mx-3 opacity-50">|</span>
