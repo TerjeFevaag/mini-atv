@@ -111,7 +111,7 @@ export default function HomePage() {
                 { n: '23+', label: 'Modeller på lager' },
                 { n: '15k+', label: 'Fornøyde kunder' },
                 { n: '3–12', label: 'Aldersgruppe (år)' },
-                { n: '🚚', label: 'Fri frakt i Norge' },
+                { n: '🚚', label: 'Frakt til hele Norge' },
               ].map(s => (
                 <div key={s.label} className="text-center">
                   <div className="text-2xl font-extrabold text-orange-400">{s.n}</div>
@@ -253,7 +253,7 @@ export default function HomePage() {
                 {[
                   { icon: '🛡️', title: 'Trygt & Pålitelig', desc: 'CE og ROHS godkjent. Dødmannsknapp på alle bensinmodeller.' },
                   { icon: '⚡', title: 'El & Bensin', desc: 'Fra stille elektriske til kraftige bensinmotorer.' },
-                  { icon: '🇳🇴', title: 'Norsk natur', desc: 'Laget for norsk terreng. Fri frakt & 14 dagers retur.' },
+                  { icon: '🇳🇴', title: 'Norsk natur', desc: 'Laget for norsk terreng. PostNord-levering & 14 dagers retur.' },
                 ].map(f => (
                   <div key={f.title} className="bg-white rounded-2xl p-4 shadow-sm">
                     <span className="text-2xl mb-2 block">{f.icon}</span>
