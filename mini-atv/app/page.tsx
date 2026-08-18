@@ -152,7 +152,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: <ShieldCheck weight="fill" className="w-5 h-5 text-white" />, title: 'CE-godkjent & trygg', desc: 'Alle ATV-er møter europeiske sikkerhetsstandarder' },
-              { icon: <Truck weight="fill" className="w-5 h-5 text-white" />, title: 'Gratis levering', desc: 'Fri frakt på alle ordre over kr 999' },
+              { icon: <Truck weight="fill" className="w-5 h-5 text-white" />, title: 'Frakt til hele Norge', desc: 'Vi sender med PostNord — pris beregnes i kassen' },
               { icon: <ArrowCounterClockwise weight="fill" className="w-5 h-5 text-white" />, title: '14 dagers retur', desc: 'Ikke fornøyd? Send den tilbake uten spørsmål' },
               { icon: <Headphones weight="fill" className="w-5 h-5 text-white" />, title: 'Kundeservice', desc: 'Ring +47 400 01 767 — vi hjelper deg' },
             ].map(t => (
