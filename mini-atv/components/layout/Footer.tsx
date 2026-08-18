@@ -100,7 +100,7 @@ export default function Footer() {
       <div className="border-t border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            © 2026 EUROSHOPPER GROUP AS (Org.nr: 925 554 804 MVA) — Alle rettigheter forbeholdt.
+            © 2026 EUROSHOPPER GROUP AS (Org.nr: 925 554 804 MVA) — Alle rettigheter forbeholdt. · Utviklet av <a href="https://fevaag.no/" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors">Fevaag Web Consulting</a>
           </p>
           <div className="flex items-center gap-2">
             <span className="text-xs text-slate-500 mr-1">Betaling:</span>
