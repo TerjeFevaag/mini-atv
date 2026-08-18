@@ -213,7 +213,7 @@ export const products: Product[] = [
     slug: 'farmer-mini-atv-50cc-bla',
     price: 7990,
     salePrice: 6990,
-    description: 'Farmer mini ATV er trolig en av de beste mini firhjulingene vi har testet. Stilig, kompakt og av meget god kvalitet. Denne modellen har easy start for at selv minstemann enkelt skal kunne starte opp sin ATV uten å få hjelp av en voksen. Leveres med justerbar maksfart 5–45 km/h.',
+    description: 'Farmer mini ATV er trolig en av de beste mini firhjulingene vi har testet. Stilig, kompakt og av meget god kvalitet. Denne modellen har easy start for at selv minstemann enkelt skal kunne starte opp sin ATV uten å få hjelp av en voksen..',
     specs: {
       'Motor': 'Luftkjølt High Performance 2-takts 49cc',
       'Maks. effekt': '2,5 kW / 8000 r/min',
@@ -248,7 +248,7 @@ export const products: Product[] = [
     slug: 'farmer-mini-atv-50cc-gronn',
     price: 7990,
     salePrice: 6990,
-    description: 'Farmer mini ATV er trolig en av de beste mini firhjulingene vi har testet. Stilig, kompakt og av meget god kvalitet. Denne modellen har easy start for at selv minstemann enkelt skal kunne starte opp sin ATV uten å få hjelp av en voksen. Leveres med justerbar maksfart 5–45 km/h.',
+    description: 'Farmer mini ATV er trolig en av de beste mini firhjulingene vi har testet. Stilig, kompakt og av meget god kvalitet. Denne modellen har easy start for at selv minstemann enkelt skal kunne starte opp sin ATV uten å få hjelp av en voksen..',
     specs: {
       'Motor': 'Luftkjølt High Performance 2-takts 49cc',
       'Maks. effekt': '2,5 kW / 8000 r/min',
@@ -283,7 +283,7 @@ export const products: Product[] = [
     slug: 'farmer-mini-atv-50cc-rod',
     price: 7990,
     salePrice: 6990,
-    description: 'Farmer mini ATV er trolig en av de beste mini firhjulingene vi har testet. Stilig, kompakt og av meget god kvalitet. Denne modellen har easy start for at selv minstemann enkelt skal kunne starte opp sin ATV uten å få hjelp av en voksen. Leveres med justerbar maksfart 0–40 km/h.',
+    description: 'Farmer mini ATV er trolig en av de beste mini firhjulingene vi har testet. Stilig, kompakt og av meget god kvalitet. Denne modellen har easy start for at selv minstemann enkelt skal kunne starte opp sin ATV uten å få hjelp av en voksen..',
     specs: {
       'Motor': '50cc 2-takts luftkjølt',
       'Bensintank': '2 liter',
