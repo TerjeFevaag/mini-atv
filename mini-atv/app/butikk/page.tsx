@@ -22,7 +22,7 @@ function SearchResults() {
       <div className="mb-8">
         <span className="section-tag">Søk</span>
         <h1 className="text-3xl font-extrabold text-slate-900 mb-2">
-          {q ? `Søkeresultater for "${q}"` : 'Søk i butikken'}
+          {q ? <>Søkeresultater for &quot;{q}&quot;</> : 'Søk i butikken'}
         </h1>
         <p className="text-slate-500 font-semibold">
           {q.length >= 2
@@ -40,7 +40,7 @@ function SearchResults() {
       ) : q.length >= 2 ? (
         <div className="text-center py-20">
           <span className="text-5xl mb-4 block">🔍</span>
-          <h2 className="text-xl font-extrabold text-slate-700 mb-2">Ingen treff på "{q}"</h2>
+          <h2 className="text-xl font-extrabold text-slate-700 mb-2">Ingen treff på &quot;{q}&quot;</h2>
           <p className="text-slate-500 mb-6">Prøv et annet søkeord, eller se alle kategorier.</p>
           <Link href="/" className="btn-primary">Tilbake til forsiden</Link>
         </div>
