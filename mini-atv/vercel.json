@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "mini-atv.vercel.app" }],
+      "destination": "https://mini-atv.no/$1",
+      "permanent": true
+    }
+  ]
+}
